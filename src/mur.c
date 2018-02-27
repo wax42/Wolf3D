@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/27 15:47:50 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/02/27 16:50:35 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void ft_value_wall(t_var *var)
 	double d;
 
 	ft_texture_orientation(var);
-	if (var->d.side == 0)
+	if (var->d.side == 0 || var->d.side == 1)
 		d = var->d.posY + var->d.perpWallDist * var->d.raydirY;
 	else
 		d = var->d.posX + var->d.perpWallDist * var->d.raydirX;

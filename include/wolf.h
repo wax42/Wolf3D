@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/27 02:21:43 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:10:22 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_draw
 	void			*win;
 	double			movespeed;
 	double			frametime;
-	double rotspeed;
+	double rotate;
 	double speed;
 	double oldDirX;
 	double oldPlaneX;
@@ -108,7 +108,7 @@ void	mur(t_var *var, int x, int y);
 void	fps_counter(t_var *var);
 void	raycaster(t_var *var);
 int my_key_funct(int keycode, t_var *var);
-
+int		rgb_to_hexa(int r, int g, int b);
 
 
 #endif

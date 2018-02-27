@@ -6,47 +6,13 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/27 15:45:08 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/02/27 16:18:31 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-
-// #define mapWidth 24
-// #define mapHeight 24
-//
-// int var->tab[mapWidth][mapHeight]=
-// {
-// 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// };
-//
-
-
-void ft_fonc(t_var *var)
+void ft_raycasting(t_var *var)
 {
 	int x;
 	int y;
@@ -56,8 +22,6 @@ void ft_fonc(t_var *var)
 	while(++x < WIN_X)
 	{
 		var->d.cameraX = (2 * x / (double)WIN_X) - 1; //position en x de notre champ de vison
-		// var->d.raydirX = var->d.posX;
-		// var->d.raydirY = var->d.posY;
 		var->d.raydirX = var->d.dirX + var->d.planeX * var->d.cameraX; // dirsction en x de rayon raycaster
 		var->d.raydirY = var->d.dirY + var->d.planeY * var->d.cameraX; // dirsction en y de rayon raycaster
 		var->d.mapX = (int)var->d.posX; // notre position en int sur le tableau
@@ -124,16 +88,14 @@ void ft_fonc(t_var *var)
 		mur(var, x, y);
 	}
 	mlx_put_image_to_window(var->d.mlx, var->d.win, var->d.img, 0, 0);
-//fps_counter(var);
 }
 int my_key_funct(int keycode, t_var *var)
 {
+	printf("keycode\t%d\n", keycode);
 	if (keycode == 53)
 		exit(1);
 	if (keycode == 126)
 	{
-		printf("posX = %f\n", var->d.posX);
-		printf("posY = %f\n", var->d.posY);
 		if(var->tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)] [(int)(var->d.posY)] == 0)
 		 	var->d.posX += var->d.dirX * var->d.movespeed;
 		if(var->tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
@@ -149,31 +111,26 @@ int my_key_funct(int keycode, t_var *var)
 	if (keycode == 124)
 	{
 		var->d.oldDirX = var->d.dirX;
-		var->d.dirX = var->d.dirX * cos(-var->d.rotspeed) - var->d.dirY * sin(-var->d.rotspeed);
-		var->d.dirY = var->d.oldDirX * sin(-var->d.rotspeed) + var->d.dirY * cos(-var->d.rotspeed);
+		var->d.dirX = var->d.dirX * cos(-var->d.rotate) - var->d.dirY * sin(-var->d.rotate);
+		var->d.dirY = var->d.oldDirX * sin(-var->d.rotate) + var->d.dirY * cos(-var->d.rotate);
 		var->d.oldPlaneX = var->d.planeX;
-		var->d.planeX = var->d.planeX * cos(-var->d.rotspeed) - var->d.planeY * sin(-var->d.rotspeed);
-		var->d.planeY = var->d.oldPlaneX * sin(-var->d.rotspeed) + var->d.planeY * cos(-var->d.rotspeed);
+		var->d.planeX = var->d.planeX * cos(-var->d.rotate) - var->d.planeY * sin(-var->d.rotate);
+		var->d.planeY = var->d.oldPlaneX * sin(-var->d.rotate) + var->d.planeY * cos(-var->d.rotate);
 	}
 	if (keycode == 123)
 	{
 		var->d.oldDirX = var->d.dirX;
-		var->d.dirX = var->d.dirX * cos(var->d.rotspeed) - var->d.dirY * sin(var->d.rotspeed);
-		var->d.dirY = var->d.oldDirX * sin(var->d.rotspeed) + var->d.dirY * cos(var->d.rotspeed);
+		var->d.dirX = var->d.dirX * cos(var->d.rotate) - var->d.dirY * sin(var->d.rotate);
+		var->d.dirY = var->d.oldDirX * sin(var->d.rotate) + var->d.dirY * cos(var->d.rotate);
 		var->d.oldPlaneX = var->d.planeX;
-		var->d.planeX = var->d.planeX * cos(var->d.rotspeed) - var->d.planeY * sin(var->d.rotspeed);
-		var->d.planeY = var->d.oldPlaneX * sin(var->d.rotspeed) + var->d.planeY * cos(var->d.rotspeed);
+		var->d.planeX = var->d.planeX * cos(var->d.rotate) - var->d.planeY * sin(var->d.rotate);
+		var->d.planeY = var->d.oldPlaneX * sin(var->d.rotate) + var->d.planeY * cos(var->d.rotate);
 	}
-	if (keycode ==0)
+	if (keycode == 0)
 	{
 		var->d.raydirY +=1;
 	}
-	 ft_fonc(var);
-	// mlx_destroy_image(var->d.mlx, var->d.img);
-	// var->d.img = mlx_new_image(var->d.mlx, WIN_X, WIN_Y);
-	// var->d.map = mlx_get_data_addr(var->d.img, &var->d.bpp, \
-	// 	&var->d.size_line, &var->d.endian);
-	printf("keycode = %d\n", keycode);
+	 ft_raycasting(var);
 	return (0);
 }
 
@@ -181,19 +138,17 @@ int main(int argc, char **av)
 {
 	t_var var;
 
-	ft_putstr("oui");
-	ft_putstr("oui");
 	if (argc == 2)
 		var.tab = parsing(av[1]);
 	var.d.mlx = mlx_init();
 	ft_init_struct(&var);
-	var.d.win = mlx_new_window(var.d.mlx, WIN_X, WIN_Y, "dd");
+	var.d.win = mlx_new_window(var.d.mlx, WIN_X, WIN_Y, "Wolf3d");
 	var.d.img = mlx_new_image(var.d.mlx, WIN_X, WIN_Y);
 	var.d.map = mlx_get_data_addr(var.d.img, &var.d.bpp, \
 		&var.d.size_line, &var.d.endian);
 	//var.d.win = mlx_new_window(var.d.mlx, WIN_X, WIN_Y, "dd");
-	ft_fonc(&var);
+	ft_raycasting(&var);
 	mlx_hook(var.d.win, 2, (1L << 0), my_key_funct, &var);
-	//mlx_loop_hook(var.d.init, (int(*)())ft_fonc, &var);
+	//mlx_loop_hook(var.d.init, (int(*)())ft_raycasting, &var);
 	mlx_loop(var.d.mlx);
 }

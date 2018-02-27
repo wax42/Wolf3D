@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/20 13:48:26 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:02:13 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ void	fps_counter(t_var *var)
 {
 	struct timeval	tp;
 	char			*tmp;
-	
+
 	var->d.oldtime = var->d.time;
-	gettimeofday(&tp, NULL);
-	var->d.time = tp.tv_usec;
 	gettimeofday(&tp, NULL);
 	var->d.time = tp.tv_usec;
 	var->d.frametime = round((var->d.time - var->d.oldtime) / 1000);
@@ -32,5 +30,5 @@ void	fps_counter(t_var *var)
 		WIN_Y / 100, 0xFF0000, tmp);
 	free(tmp);
 	var->d.movespeed = var->d.frametime * var->d.speed;
-	var->d.rotspeed = var->d.frametime * 0.003;
+	var->d.rotate = var->d.frametime * 0.003;
 }
