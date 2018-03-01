@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:48:55 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 02:07:25 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 02:25:27 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int my_key_funct(int keycode, t_var *var)
 		exit(1);
 	if (keycode == 126)
 	{
-			if(var->tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
+			if(var->parsing.tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
 		 		var->d.posX += var->d.dirX * var->d.movespeed;
-			if(var->tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
+			if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
 				var->d.posY += var->d.dirY * var->d.movespeed;
 	}
 	if (keycode == 125)
 	{
-		if(var->tab[(int)(var->d.posX - var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
+		if(var->parsing.tab[(int)(var->d.posX - var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
 			var->d.posX -= var->d.dirX * var->d.movespeed;
-		if(var->tab[(int)(var->d.posX)][(int)(var->d.posY - var->d.dirY * var->d.movespeed)] == 0)
+		if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY - var->d.dirY * var->d.movespeed)] == 0)
 			var->d.posY -= var->d.dirY * var->d.movespeed;
 	}
 	if (keycode == 124)

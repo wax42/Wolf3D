@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 02:20:37 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 02:34:19 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_lancer_de_rayon(t_var *var)
 		}
 		if (var->d.mapX < 24.0 && var->d.mapX >= 0.0 && var->d.mapY < 24.0 && var->d.mapY >= 0.0)
 		{
-			if (var->tab[var->d.mapX][var->d.mapY] > 0) // le rayon a trouvé une mur
+			if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0) // le rayon a trouvé une mur
 			{
 				var->d.hit = 1;
 			}
