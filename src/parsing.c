@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/02/27 16:02:47 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 01:03:24 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void ft_exit(int code)
 		ft_putendl("ERROR PARSING");
 	if (code  == 1)
 		ft_putendl("chiffre trop big");
+	if (code  == 0)
+		ft_putendl("BUS ERROR");
 	exit(0);
 }
 

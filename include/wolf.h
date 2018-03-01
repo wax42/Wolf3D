@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/27 17:10:22 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 02:10:46 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@
 
 # define WIN_X  800
 # define WIN_Y  800
+
+typedef struct s_coord
+{
+	int x;
+	int y;
+}				t_coord;
+
+typedef struct s_parsing
+{
+	t_coord		max;
+}				t_parsing;
 
 typedef struct s_draw
 {
@@ -94,11 +105,13 @@ typedef struct s_texture
 
 typedef struct s_var
 {
-	t_draw d;
-	t_texture t;
-	int 	**tab;
+	t_draw 		d;
+	t_texture 	t;
+	int 		**tab;
+	t_parsing	parsing;
 }				t_var;
 
+void	ft_put_map(t_var *var);
 void	sol(t_var *var, int x, int y);
 int 	**parsing(char *str);
 void	ciel(t_var *var, int x, int y);
@@ -106,7 +119,7 @@ void	mlx_pixel_put_to_image(t_draw draw, int x, int y, int color);
 void	ft_init_struct(t_var *var);
 void	mur(t_var *var, int x, int y);
 void	fps_counter(t_var *var);
-void	raycaster(t_var *var);
+void	ft_raycasting(t_var *var);
 int my_key_funct(int keycode, t_var *var);
 int		rgb_to_hexa(int r, int g, int b);
 

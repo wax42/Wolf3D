@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/27 16:50:35 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 02:10:46 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	mur(t_var *var, int x, int y)
 	y = var->d.drawStart - 1;
 	while (++y < var->d.drawEnd)
 	{
-		d = y * 256 - WIN_X * 128 + (var->d.lineHeight) * 128;
+		d = y * 256 - WIN_X * 128 + var->d.lineHeight * 128;
 		texture_y = (d *  var->t.h_texture) / (var->d.lineHeight) / 256;
 		if (texture_y >= 0)
 		{
@@ -85,7 +85,6 @@ void	mur(t_var *var, int x, int y)
 			color_r = var->t.texture[i + 2];
 			color_g = var->t.texture[i + 1];
 			color_b = var->t.texture[i];
-		//	printf("R\t%d G\t%d B\t%d\n", color_r, color_g, color_b);
 		i = (y * WIN_X + x) * 4;
 		if (i > 0 && i < (WIN_X * WIN_X* 4))
 			mlx_pixel_put_to_image(var->d, x, y, rgb_to_hexa(color_r, color_g, color_b));

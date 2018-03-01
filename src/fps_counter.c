@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/27 17:02:13 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/02/28 23:44:39 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,42 @@ void	fps_counter(t_var *var)
 	free(tmp);
 	var->d.movespeed = var->d.frametime * var->d.speed;
 	var->d.rotate = var->d.frametime * 0.003;
+}
+
+
+static void		mlx_put_pixel_image_square(t_var *var, int x, int y, int color)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i++ <= 5)
+	{
+		j = 0;
+		while (j++ <= 5)
+			mlx_pixel_put_to_image(var->d, x + i, y + j, color);
+	}
+}
+
+void	ft_put_map(t_var *var)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < 24)
+	{
+		j = 0;
+		while (j < 24)
+		{
+			if (var->tab[j][i] == 1)
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x0000FF);
+			else
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0xFFFFFF);
+			if (((int)var->d.posX == j && (int)var->d.posY == i))
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x000000);
+			j++;
+		}
+		i++;
+	}
 }

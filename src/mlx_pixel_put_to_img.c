@@ -6,12 +6,11 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:36:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/02/26 15:11:39 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/01 02:10:46 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
-
 
 void	mlx_pixel_put_to_image(t_draw draw, int x, int y, int color)
 {
@@ -19,7 +18,7 @@ void	mlx_pixel_put_to_image(t_draw draw, int x, int y, int color)
 	int			color2;
 	int			color3;
 	int			bit_pix;
-	float		img_size;
+	double		img_size;
 
 	img_size = WIN_X * WIN_Y * draw.bpp / 8;
 	if (x < 0 || y < 0 || y * draw.size_line + x * draw.bpp / 8 > \
