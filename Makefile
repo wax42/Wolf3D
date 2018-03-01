@@ -6,7 +6,7 @@
 #    By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/22 16:36:17 by wsabates          #+#    #+#              #
-#    Updated: 2018/02/28 22:39:59 by vguerand         ###   ########.fr        #
+#    Updated: 2018/03/01 14:55:07 by wsabates         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME): $(SRC)
 		@(cd minilibx_macos; make; cd ..)
 		@$(CCFLAG) $(LIB_FLAG) -o $@ $^ $(FLAGMLX)
 
-./@ %.o: %.c
+%.o: %.c
 	@$(CCFLAG) -c $< -o $@ -I
 
 clean:

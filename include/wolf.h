@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 02:41:01 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:23:57 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,24 @@ typedef struct s_parsing
 
 typedef struct s_draw
 {
-	double posX;
-	double posY;
-	double dirX;
-	double dirY;
-	double planeX;
-	double planeY;
-	double time;
-	double oldtime;
-	double cameraX;
-	double raydirX;
-	double raydirY;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	time;
+	double	oldtime;
+	double	cameraX;
+	double	raydirX;
+	double	raydirY;
 	int		mapX;
 	int		mapY;
-	double sideDistX;
-	double sideDistY;
-	double deltaDistX;
-	double deltaDistY;
-	double perpWallDist;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
 	int 	stepX;
 	int		stepY;
 	int		hit;
@@ -65,22 +65,32 @@ typedef struct s_draw
 	int 	lineHeight;
 	int		 drawStart;
 	int 	drawEnd;
-	void			*img;
-	char			*map;
-	int				bpp;
-	int				size_line;
-	int				endian;
-	void			*init;
-	void			*wdow;
-	void			*mlx;
-	void			*win;
-	double			movespeed;
-	double			frametime;
-	double rotate;
-	double speed;
-	double oldDirX;
-	double oldPlaneX;
-
+	void	*img;
+	char	*map;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	void	*init;
+	void	*wdow;
+	void	*mlx;
+	void	*win;
+	double	movespeed;
+	double	frametime;
+	double	rotate;
+	double	speed;
+	double	oldDirX;
+	double	oldPlaneX;
+	double	floorXwall;
+	double	floorYwall;
+	double	wallX;
+	double	distWall;
+	double	distPlayer;
+	double	currentDist;
+	double	weight;
+	double currentFloorX;
+	double currentFloorY;
+	int floorTexX;
+	int floorTexY;
 }			t_draw;
 
 typedef struct s_texture
@@ -98,9 +108,15 @@ typedef struct s_texture
 	char		*texture4;
 	int			w_texture4;
 	int			h_texture4;
+
+	char		*texture_floor;
+	int			w_texture_floor;
+	int			h_texture_floor;
+
 	char		*texture;
 	int			w_texture;
 	int			h_texture;
+
 }				t_texture;
 
 

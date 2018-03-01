@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 02:59:17 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:27:06 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,27 @@ void    ft_init(t_var *var)
 
 		printf("%d\n",var->d.mlx == NULL );
 
-
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/vguerand.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/brick.xpm",
                         &var->t.w_texture1, &var->t.h_texture1);
-
         var->t.texture1 = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/mbarthe.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/chat.xpm",
                         &var->t.w_texture2, &var->t.h_texture2);
         var->t.texture2 = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/msteffen.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/stone.xpm",
                         &var->t.w_texture3, &var->t.h_texture3);
         var->t.texture3 = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/wsabates.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/wood.xpm",
                         &var->t.w_texture4, &var->t.h_texture4);
         var->t.texture4 = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
+		pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/grass.xpm",
+						&var->t.w_texture_floor, &var->t.h_texture_floor );
+		var->t.texture_floor = mlx_get_data_addr(pt_texture, &(var->d.bpp),
+						&(var->d.size_line), &(var->d.endian));
+
 }
 
 void ft_init_struct(t_var *var)

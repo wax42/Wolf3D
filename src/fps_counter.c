@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 02:43:40 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:24:48 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,15 @@ void	ft_put_map(t_var *var)
 		j = 0;
 		while (j < var->parsing.max.x)
 		{
-			if (var->parsing.tab[j][i] == 1)
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x0000FF);
+			if (var->parsing.tab[j][i] > 0)
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x000000);
 			else
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0xFFFFFF);
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x9E9E9E);
 			if (((int)var->d.posX == j && (int)var->d.posY == i))
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0xf4429e);
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0xFF0000);
+
+			if ((((int)(var->d.raydirX * 2) + (int)var->d.posX)) == j && ((int)(var->d.raydirY * 2) + (int)var->d.posY== i))
+				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x00FF0f);
 			j++;
 		}
 		i++;

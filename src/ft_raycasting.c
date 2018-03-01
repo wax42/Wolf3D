@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 02:34:19 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 18:04:11 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	ft_width_wall(t_var *var)
 {
 	if (var->d.side == 0 || var->d.side == 1)
-		var->d.perpWallDist = (var->d.mapX - var->d.posX + 0.1 +\
+		var->d.perpWallDist = ((double)var->d.mapX - var->d.posX +\
 									(1 - var->d.stepX) / 2) / var->d.raydirX; // calcul de la longeur du rayon seulement quqnd on touche le mur
 	else
-		var->d.perpWallDist = (var->d.mapY - var->d.posY + 0.1 +\
+		var->d.perpWallDist = ((double)var->d.mapY - var->d.posY +\
 									(1 - var->d.stepY) / 2) / var->d.raydirY;
+	if (var->d.perpWallDist == -0.0)
+		var->d.perpWallDist = 0.5;
 	var->d.lineHeight = (int)(WIN_X / var->d.perpWallDist);
 	var->d.drawStart = -var->d.lineHeight / 2 + WIN_X / 2;
 	if (var->d.drawStart < 0)
@@ -114,8 +116,8 @@ void	ft_raycasting(t_var *var)
 		ft_init_raycasting(var, x);
 		ft_lancer_de_rayon(var);
 		ft_width_wall(var);
+		//ciel(var, x, y);
 		sol(var, x, y);
-		ciel(var, x, y);
 		mur(var, x, y);
 	}
 	ft_put_map(var);
