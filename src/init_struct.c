@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 01:21:38 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/01 02:59:17 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void ft_init_struct(t_var *var)
 	var->d.planeY = 0.66;
 	var->d.time = 0;
 	var->d.oldtime = 0;
-	var->d.movespeed = 1;
-	var->d.rotate = 0.5;
+	var->d.movespeed = 0.5;
+	var->d.rotate = 0.2;
 	var->d.oldDirX = 0;
 	var->d.speed = 8;
 	ft_init(var);
