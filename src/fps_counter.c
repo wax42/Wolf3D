@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 16:24:48 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/03 17:33:50 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	fps_counter(t_var *var)
 }
 
 
-static void		mlx_put_pixel_image_square(t_var *var, int x, int y, int color)
+static void		mlx_put_pixel_image_square(t_var *var, int x, int y, int color, int denom)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i++ <= 5)
+	while (i++ <= denom)
 	{
 		j = 0;
-		while (j++ <= 5)
+		while (j++ <= denom)
 			mlx_pixel_put_to_image(var->d, x + i, y + j, color);
 	}
 }
@@ -52,7 +52,12 @@ void	ft_put_map(t_var *var)
 {
 	int i;
 	int j;
+	int denom;
 
+	if (var->parsing.max.y > var->parsing.max.x)
+		denom = var->parsing.max.y / 5;
+	else
+		denom = var->parsing.max.x / 5;
 	i = 0;
 	while (i < var->parsing.max.y)
 	{
@@ -60,14 +65,14 @@ void	ft_put_map(t_var *var)
 		while (j < var->parsing.max.x)
 		{
 			if (var->parsing.tab[j][i] > 0)
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x000000);
+				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x000000, denom);
 			else
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x9E9E9E);
+				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x9E9E9E, denom);
 			if (((int)var->d.posX == j && (int)var->d.posY == i))
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0xFF0000);
+				mlx_put_pixel_image_square(var, i * denom, j * denom, 0xFF0000, denom);
 
-			if ((((int)(var->d.raydirX * 2) + (int)var->d.posX)) == j && ((int)(var->d.raydirY * 2) + (int)var->d.posY== i))
-				mlx_put_pixel_image_square(var, i * 5, j * 5, 0x00FF0f);
+			if ((((int)(var->d.raydirX * 1.2) + (int)var->d.posX)) == j && ((int)(var->d.raydirY * 1.2) + (int)var->d.posY== i))
+				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x00FF0f, denom);
 			j++;
 		}
 		i++;

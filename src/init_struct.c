@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 17:27:06 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/02 19:41:12 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    ft_init(t_var *var)
 
 		printf("%d\n",var->d.mlx == NULL );
 
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/brick.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/vguerand.xpm",
                         &var->t.w_texture1, &var->t.h_texture1);
         var->t.texture1 = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
