@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/05 13:56:15 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:45:43 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ void ft_texture_orientation(t_var *var)
 
 void ft_value_wall(t_var *var)
 {
-
 	ft_texture_orientation(var);
 	if (var->d.side == 0 || var->d.side == 1)
-		var->d.wallX = var->d.posY + var->d.perpWallDist * var->d.raydirY;
+		var->d.wallX = var->d.posY + var->d.perpWallDist * var->d.raydirY;//La valeur wallX représente la valeur exacte à laquelle le mur a été touché
 	else
 		var->d.wallX = var->d.posX + var->d.perpWallDist * var->d.raydirX;
 	var->d.wallX -= floor(var->d.wallX);

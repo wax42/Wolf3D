@@ -6,13 +6,13 @@
 #    By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/22 16:36:17 by wsabates          #+#    #+#              #
-#    Updated: 2018/03/01 14:55:07 by wsabates         ###   ########.fr        #
+#    Updated: 2018/03/05 15:25:55 by wsabates         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wolf3d
 
-SRC_NAME = init_struct.c ft_raycasting.c sol.c ciel.c mlx_pixel_put_to_img.c mur.c fps_counter.c parsing.c keyfunc.c main.c
+SRC_NAME = init_struct.c ft_raycasting.c sol.c ciel.c mlx_pixel_put_to_img.c mur.c fps_counter.c parsing.c keyfunc.c main.c obj.c
 
 SRC_PATH = src
 

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/03 17:33:50 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:42:14 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	ft_put_map(t_var *var)
 	int denom;
 
 	if (var->parsing.max.y > var->parsing.max.x)
-		denom = var->parsing.max.y / 5;
+		denom = var->parsing.max.y / 4;
 	else
-		denom = var->parsing.max.x / 5;
+		denom = var->parsing.max.x / 4;
 	i = 0;
 	while (i < var->parsing.max.y)
 	{
@@ -71,7 +71,7 @@ void	ft_put_map(t_var *var)
 			if (((int)var->d.posX == j && (int)var->d.posY == i))
 				mlx_put_pixel_image_square(var, i * denom, j * denom, 0xFF0000, denom);
 
-			if ((((int)(var->d.raydirX * 1.2) + (int)var->d.posX)) == j && ((int)(var->d.raydirY * 1.2) + (int)var->d.posY== i))
+			if ((((int)(var->d.raydirX * 2) + (int)var->d.posX)) == j && ((int)(var->d.raydirY * 2) + (int)var->d.posY) == i)
 				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x00FF0f, denom);
 			j++;
 		}

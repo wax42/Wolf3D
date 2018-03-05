@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 18:04:11 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:48:16 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	ft_lancer_de_rayon(t_var *var)
 		}
 		if (var->d.mapX < 24.0 && var->d.mapX >= 0.0 && var->d.mapY < 24.0 && var->d.mapY >= 0.0)
 		{
-			if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0) // le rayon a trouvé une mur
+			if (var->parsing.tab[var->d.mapX][var->d.mapY] == 9 && !var->o.bol) // le rayon a trouvé une mur
+				ft_init_obj(var);
+			else if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0) // le rayon a trouvé une mur
 			{
 				var->d.hit = 1;
 			}
@@ -101,6 +103,7 @@ void	ft_init_raycasting(t_var *var, int x)
 	var->d.deltaDistX = fabs(1 / var->d.raydirX); // la distance que le rayon doit parcourir en x dans chaque carre de du tableau
 	var->d.deltaDistY = fabs(1 / var->d.raydirY);
 	var->d.hit = 0; // si il y a un mur ou non
+	var->o.bol = 0;
 	ft_condtion_ray(var);
 }
 
@@ -120,6 +123,7 @@ void	ft_raycasting(t_var *var)
 		sol(var, x, y);
 		mur(var, x, y);
 	}
+	objet(var, x, y);
 	ft_put_map(var);
 	mlx_put_image_to_window(var->d.mlx, var->d.win, var->d.img, 0, 0);
 }

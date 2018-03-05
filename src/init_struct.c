@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/05 13:55:50 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:19:10 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    ft_init(t_var *var)
 
 		printf("%d\n",var->d.mlx == NULL );
 
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/vguerand.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/obj_pillier.xpm",
                         &var->t.w_texture1, &var->t.h_texture1);
         var->t.texture1 = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
@@ -38,6 +38,10 @@ void    ft_init(t_var *var)
 		pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/grass.xpm",
 						&var->t.w_texture_floor, &var->t.h_texture_floor );
 		var->t.texture_floor = mlx_get_data_addr(pt_texture, &(var->d.bpp),
+						&(var->d.size_line), &(var->d.endian));
+		pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/obj_pillier.xpm",
+						&var->t.w_texture_obj, &var->t.h_texture_obj );
+		var->t.texture_obj = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
 
 }

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 17:23:57 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:28:30 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,23 @@ typedef struct s_draw
 	int floorTexY;
 }			t_draw;
 
+typedef struct s_obj
+{
+	int bol;
+	int spriteScreenX;
+	double 	perpWallDist;
+	int 	drawStartY;
+	int 	drawStartX;
+	int 	drawEndY;
+	int 	drawEndX;
+	double 	spriteHeight;
+	double 	spriteWidth;
+	double 	raydirX;
+	double 	raydirY;
+	double	wallX;
+	int 	texture_x;
+}				t_obj;
+
 typedef struct s_texture
 {
 	int texture_x;
@@ -113,6 +130,10 @@ typedef struct s_texture
 	int			w_texture_floor;
 	int			h_texture_floor;
 
+	char		*texture_obj;
+	int			w_texture_obj;
+	int			h_texture_obj;
+
 	char		*texture;
 	int			w_texture;
 	int			h_texture;
@@ -122,11 +143,14 @@ typedef struct s_texture
 
 typedef struct s_var
 {
+	t_obj		o;
 	t_draw 		d;
 	t_texture 	t;
 	t_parsing	parsing;
 }				t_var;
 
+void 	objet(t_var *var, int x, int y);
+void 	ft_init_obj(t_var *var);
 void	ft_put_map(t_var *var);
 void	sol(t_var *var, int x, int y);
 int 	**parsing(t_parsing *p, char *str);
