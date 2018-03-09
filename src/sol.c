@@ -6,18 +6,11 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:11 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/01 18:23:50 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/09 12:54:28 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
-
-// void	sol(t_var *var, int x, int y)
-// {
-// 	y = var->d.drawEnd - 1;
-// 	while (++y < WIN_Y)
-// 		mlx_pixel_put_to_image(var->d, x, y, 0x666699);
-// }
 
 void	sol(t_var *var, int x, int y)
 {
@@ -50,7 +43,7 @@ void	sol(t_var *var, int x, int y)
 	var->d.distPlayer = 0.0;
 	if (var->d.drawEnd < 0)
 		var->d.drawEnd = WIN_X;
-	y = var->d.drawEnd + 1;
+	y = var->d.drawEnd - 1;
 	while (y++ < WIN_X)
 	{
 		var->d.currentDist = WIN_X / (2.0 * y - WIN_X);

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/06 16:47:02 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/09 13:05:33 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void 	ft_init_obj(t_var *var)
 	transformY = invDet * (-var->d.planeY * spriteX + var->d.planeX * spriteY); // c'est en fait la profondeur à l'intérieur de l'écran, que Z est en 3D
 	transformX = invDet * (var->d.dirY * spriteX - var->d.dirX * spriteY);
 	var->o.spriteScreenX = (int)((WIN_Y / 2) * (1 + transformX / transformY));
-
 	var->o.spriteHeight = abs((int)(WIN_X / transformY)); ///bellec au Y
 	var->o.drawStartY = -var->o.spriteHeight / 2 + WIN_X / 2;
 	if (var->o.drawStartY < 0)
@@ -52,21 +51,13 @@ int	ft_lancer_d_obj(t_var *var)
 		{
 			var->d.sideDistX += var->d.deltaDistX;
 			var->d.mapX += var->d.stepX; // pour faire avancer la position du rayon sur la map
-			if (var->d.stepX == -1)
-				var->d.side = 0;
-			if (var->d.stepX == 1)
-				var->d.side = 1;
 		}
 		else
 		{
 			var->d.sideDistY += var->d.deltaDistY;
 			var->d.mapY += var->d.stepY;
-			if (var->d.stepY == -1)
-				var->d.side = 2;
-			if (var->d.stepY == 1)
-				var->d.side = 3;
 		}
-		if (var->d.mapX < 24.0 && var->d.mapX >= 0.0 && var->d.mapY < 24.0 && var->d.mapY >= 0.0)
+		if (var->d.mapX < 24 && var->d.mapX >= 0 && var->d.mapY < 24 && var->d.mapY >= 0)
 		{
 			if (var->parsing.tab[var->d.mapX][var->d.mapY] == 9) // le rayon a trouvé un obj
 				return (1);
@@ -102,7 +93,7 @@ void 	objet(t_var *var, int x, int y)
 	int i;
 
 
-	x = var->o.drawStartX;
+	x = var->o.drawStartX - 1;
 	ft_init_obj(var);
 	while (++x < var->o.drawEndX)
 	{
