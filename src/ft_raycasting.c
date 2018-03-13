@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/10 17:14:21 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:45:18 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,15 @@ void	ft_lancer_de_rayon(t_var *var)
 			if (var->d.stepY == 1)
 				var->d.side = 3;
 		}
-		if (var->d.mapX < 24.0 && var->d.mapX >= 0.0 && var->d.mapY < 24.0 && var->d.mapY >= 0.0)
+		if ((var->d.mapX < 24.0 && var->d.mapX >= 0.0) && (var->d.mapY < 24.0 && var->d.mapY >= 0.0) && var->d.del_wall == 1)
 		{
 			if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0 && var->parsing.tab[var->d.mapX][var->d.mapY] != 9) // le rayon a trouvé une mur
 				var->d.hit = 1;
 		}
 		else
-			var->d.hit = 1;
+		 	var->d.hit = 1;
+		if (var->parsing.tab[var->d.mapX][var->d.mapY] == 2 && var->d.del == 1)
+			var->parsing.tab[var->d.mapX][var->d.mapY] = 0;
 	}
 }
 
@@ -111,19 +113,21 @@ void	ft_raycasting(t_var *var)
 	y = 0;
 	while (++x < WIN_X)
 	{
+		// printf("posx=%f  posy=%f\n", var->d.posX, var->d.posY);
 		ft_init_raycasting(var, x);
 		ft_lancer_de_rayon(var);
 		ft_width_wall(var);
-		sol(var, x, y);
 		mur(var, x, y);
+		ciel(var, x, y);
+		sol(var, x, y);
 	}
-	objet(var, x, y);
-	// while (var->coord)
+	ft_aff_obj(var);
+	// while (lst)
 	// {
-		// tmp = var->coord;
-		// printf("%d %d\t", tmp->coord.x, tmp->coord.y);
-		// var->coord = var->coord->next;
-		// free(tmp);
+	// 	objet(var, 20, 11);
+	// 	objet(var, 19, 12);
+	// 	//free(lst);
+	// 	lst = lst->next;
 	// }
 	ft_put_map(var);
 	mlx_put_image_to_window(var->d.mlx, var->d.win, var->d.img, 0, 0);

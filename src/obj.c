@@ -6,37 +6,38 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/10 20:20:23 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/13 14:04:15 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-void 	ft_init_obj(t_var *var)
+void 	ft_init_obj(t_var *var, int x, int y)
 {
 	double invDet;
 
 	double spriteX;
 	double spriteY;
 
-	spriteX = (double)var->o.coord.x - var->d.posX; // calcul de la longeur du rayon seulement quqnd on touche l obj
-	spriteY = (double)var->o.coord.y - var->d.posY; // calcul de la longeur du rayon seulement quqnd on touche l obj
+	spriteX = (double)(y) + 0.4 - var->d.posX; // calcul de la longeur du rayon seulement quqnd on touche l obj
+	spriteY = (double)(x) + 0.4 - var->d.posY; // calcul de la longeur du rayon seulement quqnd on touche l obj
 	invDet = 1.0 / (var->d.planeX * var->d.dirY - var->d.dirX * var->d.planeY); // requis pour une bonne multiplication de la matrice
 	var->o.transformX = invDet * (var->d.dirY * spriteX - var->d.dirX * spriteY);
 	var->o.transformY = invDet * (-var->d.planeY * spriteX + var->d.planeX * spriteY); // c'est en fait la profondeur à l'intérieur de l'écran, que Z est en 3D
 	var->o.spriteScreenX = (int)((WIN_Y / 2) * (1 + var->o.transformX / var->o.transformY));
-	var->o.spriteHeight = abs((int)(WIN_X / var->o.transformY)); ///bellec au Y
+	var->s.vMoveScreen = (int)(vMove / var->o.transformY);
+	var->o.spriteHeight = abs((int)(WIN_X / var->o.transformY)) / vDiv; ///bellec au Y
 
 	 // calculer le pixel le plus bas et le plus haut pour remplir la bande courante
-	var->o.drawStartY = -var->o.spriteHeight / 2 + WIN_X / 2;
+	var->o.drawStartY = -var->o.spriteHeight / 2 + WIN_X / 2 + var->s.vMoveScreen;
 	if (var->o.drawStartY < 0)
 		var->o.drawStartY = 0;
-	var->o.drawEndY = var->o.spriteHeight / 2 + WIN_X / 2;
+	var->o.drawEndY = var->o.spriteHeight / 2 + WIN_X / 2 + var->s.vMoveScreen;
 	if (var->o.drawEndY >= WIN_X)
 		var->o.drawEndY = WIN_X - 1;
 
       // calcule la largeur de l'image-objet
-	var->o.spriteWidth = abs((int)(WIN_X / var->o.transformY)); ///bellec au Y
+	var->o.spriteWidth = abs((int)(WIN_X / var->o.transformY)) / uDiv; ///bellec au Y
 	var->o.drawStartX = -var->o.spriteWidth / 2 + var->o.spriteScreenX;
 	if (var->o.drawStartX < 0)
 		var->o.drawStartX = 0;
@@ -95,10 +96,10 @@ void 	objet(t_var *var, int x, int y)
 	int color_r;
 	int i;
 
-	ft_init_obj(var);
+	ft_init_obj(var, x, y);
 
       // boucle sur toutes les bandes verticales de l'image-objet à l'écran
-	  x = var->o.drawStartX;
+	x = var->o.drawStartX;
 	while (x++ < var->o.drawEndX)
 	{
 		texture_x = (int)(256 * (x - (-var->o.spriteWidth / 2 + var->o.spriteScreenX)) * var->t.w_texture_obj / var->o.spriteWidth) / 256;
@@ -106,11 +107,11 @@ void 	objet(t_var *var, int x, int y)
 		if (obj_check(var, x))
 		{
 
-			// if(var->o.transformY > 0 && x > 0 && x < WIN_X && var->o.transformY < var->parsing.tab[var->d.mapX][var->d.mapY])
-			// {
+			if(var->o.transformY > 0 && x > 0 && x < WIN_X && var->o.transformY < var->parsing.tab[var->d.mapX][var->d.mapY])
+			{
 			while (++y < var->o.drawEndY)// pour chaque pixel de la bande courante
 			{
-				d = (y * 256 - WIN_Y * 128 + var->o.spriteHeight * 128);
+				d = ((y - var->s.vMoveScreen) * 256 - WIN_Y * 128 + var->o.spriteHeight * 128);
 				texture_y = ((d * var->t.h_texture_obj) / var->o.spriteHeight) / 256;
 				if (texture_y > 0)
 				{
@@ -124,7 +125,7 @@ void 	objet(t_var *var, int x, int y)
 					}
 				}
 
-			// }
+			}
 		}
 	}
 }

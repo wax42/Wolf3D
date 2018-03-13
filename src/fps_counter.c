@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/05 17:42:14 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/13 00:04:19 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	ft_put_map(t_var *var)
 		j = 0;
 		while (j < var->parsing.max.x)
 		{
-			if (var->parsing.tab[j][i] > 0)
+			if (var->parsing.tab[j][i] == 9)
+				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x0000FF, denom);
+			if (var->parsing.tab[j][i] > 0 && var->parsing.tab[j][i] != 9)
 				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x000000, denom);
-			else
+			if (var->parsing.tab[j][i] == 0)
 				mlx_put_pixel_image_square(var, i * denom, j * denom, 0x9E9E9E, denom);
 			if (((int)var->d.posX == j && (int)var->d.posY == i))
 				mlx_put_pixel_image_square(var, i * denom, j * denom, 0xFF0000, denom);

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/10 17:38:45 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:30:23 by wsabates         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@ void ft_texture_orientation(t_var *var)
 {
 	if (var->d.side == 0)
 	{
-		var->t.texture = var->t.texture1;
-		var->t.w_texture = var->t.w_texture1;
-		var->t.h_texture = var->t.h_texture1;
+		var->t.texture = var->t.tex_mur_nord;
+		var->t.w_texture = var->t.w_tex_mur_nord;
+		var->t.h_texture = var->t.h_tex_mur_nord;
 	}
 	else if (var->d.side == 1)
 	{
-		var->t.texture = var->t.texture2;
-		var->t.w_texture = var->t.w_texture2;
-		var->t.h_texture = var->t.h_texture2;
+		var->t.texture = var->t.tex_mur_sud;
+		var->t.w_texture = var->t.w_tex_mur_sud;
+		var->t.h_texture = var->t.h_tex_mur_sud;
 	}
 	else if (var->d.side == 2)
 	{
-		var->t.texture = var->t.texture3;
-		var->t.w_texture = var->t.w_texture3;
-		var->t.h_texture = var->t.h_texture3;
+		var->t.texture = var->t.tex_mur_west;
+		var->t.w_texture = var->t.w_tex_mur_west;
+		var->t.h_texture = var->t.h_tex_mur_west;
 	}
 	else
 	{
-		var->t.texture = var->t.texture4;
-		var->t.w_texture = var->t.w_texture4;
-		var->t.h_texture = var->t.h_texture4;
+		var->t.texture = var->t.tex_mur_est;
+		var->t.w_texture = var->t.w_tex_mur_est;
+		var->t.h_texture = var->t.h_tex_mur_est;
 	}
 }
 
