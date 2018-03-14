@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/13 13:55:28 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/14 05:48:37 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,16 @@ void ft_init_struct(t_var *var)
 	var->d.rotate = 0.2;
 	var->d.oldDirX = 0;
 	var->d.speed = 8;
+	var->map.x = 100;
+	var->map.y = 100;
+
+	var->alpha = -670; //100
+	var->beta = 900; //360
+	var->teta = 30;	//50 /proj iso
+
+	// var->alpha = 0; //100
+	// var->beta = 890; //360 /// projection parrallele
+	// var->teta = 30;
 	var->lst = ft_init_lst_obj(var);
 	ft_init(var);
 }

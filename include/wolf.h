@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/13 13:48:19 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/14 05:31:48 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_draw
 
 typedef struct s_obj
 {
+	t_coord coord;
 	int 	bol;
 	int		spriteScreenX;
 	int 	drawStartY;
@@ -174,14 +175,27 @@ typedef struct s_texture
 
 }				t_texture;
 
+typedef struct s_map
+{
+	int 		x;
+	int 		y;
+	int 		z;
+}				t_map;
+
 typedef struct s_var
 {
+
+	int alpha;
+	int beta;
+	int teta;
+
 	t_scaling	s;
 	t_obj		o;
 	t_lst_obj	*lst;
 	int 		nbr_elem;
 	t_draw 		d;
 	t_texture 	t;
+	t_map 		map;
 	t_parsing	parsing;
 }				t_var;
 

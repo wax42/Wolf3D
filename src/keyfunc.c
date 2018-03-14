@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:48:55 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/12 23:58:12 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/14 04:14:06 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ int my_key_funct(int keycode, t_var *var)
 	{
 		var->d.del = 1;
 	}
+	if (keycode == 89)
+		var->alpha += 10;
+	if (keycode == 86)
+		var->alpha -= 10;
+
+	if (keycode == 91)
+		var->beta += 10;
+	if (keycode == 87)
+		var->beta -= 10;
+
+ 	if (keycode == 92)
+		var->teta += 10;
+	if (keycode == 88)
+		var->teta -= 10;
+	if (keycode == 67)
+		printf("alpha%d beta%d teta%d\n", var->alpha, var->beta, var->teta);
+
 	if (keycode == K_MOVE_UP)
 	{
 			// if(var->parsing. tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)

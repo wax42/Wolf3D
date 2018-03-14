@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/13 14:04:15 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/14 05:37:31 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void 	ft_init_obj(t_var *var, int x, int y)
 	double spriteX;
 	double spriteY;
 
-	spriteX = (double)(y) + 0.4 - var->d.posX; // calcul de la longeur du rayon seulement quqnd on touche l obj
-	spriteY = (double)(x) + 0.4 - var->d.posY; // calcul de la longeur du rayon seulement quqnd on touche l obj
+	var->o.coord.x = x;
+	var->o.coord.y = y;
+	spriteX = (double)(x) + 0.4 - var->d.posX; // calcul de la longeur du rayon seulement quqnd on touche l obj
+	spriteY = (double)(y) + 0.4 - var->d.posY; // calcul de la longeur du rayon seulement quqnd on touche l obj
 	invDet = 1.0 / (var->d.planeX * var->d.dirY - var->d.dirX * var->d.planeY); // requis pour une bonne multiplication de la matrice
 	var->o.transformX = invDet * (var->d.dirY * spriteX - var->d.dirX * spriteY);
 	var->o.transformY = invDet * (-var->d.planeY * spriteX + var->d.planeX * spriteY); // c'est en fait la profondeur à l'intérieur de l'écran, que Z est en 3D
@@ -63,9 +65,9 @@ int	ft_lancer_d_obj(t_var *var)
 		}
 		if (var->d.mapX < 24 && var->d.mapX >= 0 && var->d.mapY < 24 && var->d.mapY >= 0)
 		{
-			if (var->parsing.tab[var->d.mapX][var->d.mapY] == 9) // le rayon a trouvé un obj
+			if (var->d.mapX == var->o.coord.x && var->d.mapY == var->o.coord.y) // le rayon a trouvé un obj
 				return (1);
-			else if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0) // le rayon a trouvé une mur
+			else if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0 && var->parsing.tab[var->d.mapX][var->d.mapY] != 9) // le rayon a trouvé une mur
 				return (0);
 		}
 	}
