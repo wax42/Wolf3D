@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/16 15:43:15 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:50:28 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	ft_lancer_de_rayon(t_var *var)
 			if (var->d.stepY == 1)
 				var->d.side = 3;
 		}
-		if ((var->d.mapX < var->parsing.max.x && var->d.mapX >= 0.0) && (var->d.mapY < var->parsing.max.y && var->d.mapY >= 0.0) && var->d.del_wall == 1)
+		if ((var->d.mapX <= var->parsing.max.x && var->d.mapX >= 0.0) && (var->d.mapY <= var->parsing.max.y && var->d.mapY >= 0.0) && var->d.del_wall == 1)
 		{
 			if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0 && var->parsing.tab[var->d.mapX][var->d.mapY] != 9) // le rayon a trouvé une mur
 				var->d.hit = 1;
+			if (var->parsing.tab[var->d.mapX][var->d.mapY] == 2 && var->d.del == 1)
+				var->parsing.tab[var->d.mapX][var->d.mapY] = 0;
 		}
 		else
 		 	var->d.hit = 1;
-		if (var->parsing.tab[var->d.mapX][var->d.mapY] == 2 && var->d.del == 1)
-			var->parsing.tab[var->d.mapX][var->d.mapY] = 0;
 	}
 }
 
@@ -133,4 +133,5 @@ void	ft_raycasting(t_var *var)
 	// 	lst = lst->next;
 	// }
 	mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->mlx.img, 0, 0);
+	fps_counter(var);
 }

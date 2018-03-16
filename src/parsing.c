@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/03/11 20:37:54 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:24:15 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ int		**parse_tab(int **tab, int y_max, int x_max, int fd)
 		x = -1;
 		while (line[++i])
 		{
-			if (ft_isdigit(line[i]))
+			if (++x < x_max)
 			{
-				(++x > x_max) ? ft_exit(1) : NULL;
 				tab[y][x] = ft_atoi(line + i);
 				(tab[y][x] < 0 || tab[y][x] > 9) ? ft_exit(1) : NULL;
 				i++;

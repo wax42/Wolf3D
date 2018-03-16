@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:48:55 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/15 23:29:15 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:48:55 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ int my_key_funct(int keycode, t_var *var)
 		var->teta -= 10;
 	if (keycode == 67)
 		printf("alpha%d beta%d teta%d\n", var->alpha, var->beta, var->teta);
-
 	if (keycode == K_MOVE_UP)
 	{
-			// if(var->parsing. tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
+			if(var->parsing.tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
 				var->d.posX += var->d.dirX * var->d.movespeed;
-			// if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
+			if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
 				var->d.posY += var->d.dirY * var->d.movespeed;
 	}
 	if (keycode == K_MOVE_DOWN)
@@ -116,6 +115,6 @@ int my_key_funct(int keycode, t_var *var)
 		if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY - var->d.planeY * var->d.movespeed)] == 0)
 			var->d.posY -= var->d.planeY * var->d.movespeed;
 	}
-	ft_raycasting(var);
+	// ft_raycasting(var);
 	return (0);
 }
