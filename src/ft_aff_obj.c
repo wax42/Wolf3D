@@ -6,13 +6,13 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 13:10:41 by vguerand          #+#    #+#             */
-/*   Updated: 2018/03/14 06:30:29 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:41:35 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-t_tab *ft_dist_obj(t_lst_obj *lst, int len, int posX, int posY)
+t_tab *ft_dist_obj(t_lst_obj *lst, int len, double posX, double posY)
 {
 	t_tab 	*tab;
 	int j;
@@ -22,7 +22,7 @@ t_tab *ft_dist_obj(t_lst_obj *lst, int len, int posX, int posY)
 	while (++j < len)
 	{
 		tab[j].obj = lst;
-		tab[j].dist =  ((posX - lst->coord.x) * (posX - lst->coord.x))  + ((posY - lst->coord.y) * (posY - lst->coord.y));
+		tab[j].dist =  sqrt(((posX - lst->coord.x) * (posX - lst->coord.x)) + ((posY - lst->coord.y) * (posY - lst->coord.y)));
 		lst = lst->next;
 	}
 	return (tab);
@@ -56,6 +56,7 @@ void 	ft_buble_sort_crois(t_tab *tab, int len)
 	t_tab temp;
 
 	i = 0;
+	ft_putstr("trie d objet\n");
 	while (i < len - 1)
 	{
 		if (tab[i].dist < tab[i + 1].dist)
@@ -81,12 +82,21 @@ void ft_aff_obj(t_var *var)
 	int i;
 
 	lst = var->lst;
-	tab = ft_dist_obj(lst, var->nbr_elem, (int)var->d.posX, (int)var->d.posY);
+	tab = ft_dist_obj(lst, var->nbr_elem, var->d.posX, var->d.posY);
 	if (var->d.side == 0 || var->d.side == 3)
+	{
+
 	// if (var->d.dirX < 0.5 && var->d.dirX > -1.0 && var->d.dirY > -1.0 & var->d.dirY < 0.5)
-		ft_buble_sort_crois(tab, var->nbr_elem);
-	else
 		ft_buble_sort_decrois(tab, var->nbr_elem);
+		ft_putendl("Croissant");
+	}
+	else
+	{
+		ft_buble_sort_decrois(tab, var->nbr_elem);
+
+		// ft_buble_sort_decrois(tab, var->nbr_elem);
+		ft_putendl("Deroissant");
+	}
 	ft_putstr("SIDE   ");
 	ft_putnbr(var->d.side);
 	ft_putstr("\n");
@@ -94,7 +104,7 @@ void ft_aff_obj(t_var *var)
 	i = -1;
 	while (++i < var->nbr_elem)
 	{
-		printf("%d %d %d\n", tab[i].obj->coord.x, tab[i].obj->coord.y, tab[i].dist);
+		printf("%d %d %f\n", tab[i].obj->coord.x, tab[i].obj->coord.y, tab[i].dist);
 		objet(var,  tab[i].obj->coord.y, tab[i].obj->coord.x);
 	}
 	free(tab);

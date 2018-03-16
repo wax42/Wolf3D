@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/13 13:45:18 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:43:15 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_lancer_de_rayon(t_var *var)
 			if (var->d.stepY == 1)
 				var->d.side = 3;
 		}
-		if ((var->d.mapX < 24.0 && var->d.mapX >= 0.0) && (var->d.mapY < 24.0 && var->d.mapY >= 0.0) && var->d.del_wall == 1)
+		if ((var->d.mapX < var->parsing.max.x && var->d.mapX >= 0.0) && (var->d.mapY < var->parsing.max.y && var->d.mapY >= 0.0) && var->d.del_wall == 1)
 		{
 			if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0 && var->parsing.tab[var->d.mapX][var->d.mapY] != 9) // le rayon a trouvé une mur
 				var->d.hit = 1;
@@ -111,6 +111,7 @@ void	ft_raycasting(t_var *var)
 
 	x = -1;
 	y = 0;
+	printf("posX%d posY%d \n", (int)var->d.posX, (int)var->d.posY);
 	while (++x < WIN_X)
 	{
 		// printf("posx=%f  posy=%f\n", var->d.posX, var->d.posY);
@@ -121,6 +122,8 @@ void	ft_raycasting(t_var *var)
 		ciel(var, x, y);
 		sol(var, x, y);
 	}
+	ft_put_map(var);
+
 	ft_aff_obj(var);
 	// while (lst)
 	// {
@@ -129,6 +132,5 @@ void	ft_raycasting(t_var *var)
 	// 	//free(lst);
 	// 	lst = lst->next;
 	// }
-	ft_put_map(var);
-	mlx_put_image_to_window(var->d.mlx, var->d.win, var->d.img, 0, 0);
+	mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->mlx.img, 0, 0);
 }

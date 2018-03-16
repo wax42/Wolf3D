@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:23 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/12 13:26:24 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/15 22:54:01 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	ciel(t_var *var, int x, int y)
 		color_r = var->t.tex_sky[i + 2];
 		color_g = var->t.tex_sky[i + 1];
 		color_b = var->t.tex_sky[i];
-		mlx_pixel_put_to_image(var->d, x, WIN_Y - y, rgb_to_hexa(color_r, color_g, color_b));
+		mlx_pixel_put_to_image(var->mlx, x, WIN_Y - y, rgb_to_hexa(color_r, color_g, color_b));
 	}
 }

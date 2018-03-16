@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 22:16:16 by vguerand          #+#    #+#             */
-/*   Updated: 2018/03/12 15:39:10 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/15 22:56:12 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int		main(int argc, char **av)
 
 	if (argc == 2)
 		var.parsing.tab = parsing(&var.parsing, av[1]);
-	var.d.mlx = mlx_init();
+	var.mlx.mlx = mlx_init();
 	ft_init_struct(&var);
-	var.d.win = mlx_new_window(var.d.mlx, WIN_X, WIN_Y, "Wolf3d");
-	var.d.img = mlx_new_image(var.d.mlx, WIN_X, WIN_Y);
-	var.d.map = mlx_get_data_addr(var.d.img, &var.d.bpp, \
-		&var.d.size_line, &var.d.endian);
+	var.mlx.win = mlx_new_window(var.mlx.mlx, WIN_X, WIN_Y, "Wolf3d");
+	var.mlx.img = mlx_new_image(var.mlx.mlx, WIN_X, WIN_Y);
+	var.mlx.map = mlx_get_data_addr(var.mlx.img, &var.mlx.bpp, \
+		&var.mlx.size_line, &var.mlx.endian);
 	ft_raycasting(&var);
-	mlx_hook(var.d.win, 2, (1L << 0), my_key_funct, &var);
-	mlx_hook(var.d.win, 17, 0, ft_exit_click, &var);
-	mlx_loop(var.d.mlx);
+	mlx_hook(var.mlx.win, 2, (1L << 0), my_key_funct, &var);
+	mlx_hook(var.mlx.win, 17, 0, ft_exit_click, &var);
+	mlx_loop(var.mlx.mlx);
 }

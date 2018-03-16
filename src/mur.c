@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/12 13:30:23 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/15 22:53:54 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	mur(t_var *var, int x, int y)
 			color_b = var->t.texture[i];
 			i = (y * WIN_X + x) * 4;
 			if (i > 0 && i < (WIN_X * WIN_X * 4))
-				mlx_pixel_put_to_image(var->d, x, y, rgb_to_hexa(color_r, color_g, color_b));
+				mlx_pixel_put_to_image(var->mlx, x, y, rgb_to_hexa(color_r, color_g, color_b));
 		}
 	}
 }

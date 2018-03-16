@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/14 05:37:31 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:44:41 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void 	ft_init_obj(t_var *var, int x, int y)
 	var->o.spriteScreenX = (int)((WIN_Y / 2) * (1 + var->o.transformX / var->o.transformY));
 	var->s.vMoveScreen = (int)(vMove / var->o.transformY);
 	var->o.spriteHeight = abs((int)(WIN_X / var->o.transformY)) / vDiv; ///bellec au Y
+	printf("transforlmY%fvar->o.spriteHeight%f\n", var->o.transformY, var->o.spriteHeight);
 
 	 // calculer le pixel le plus bas et le plus haut pour remplir la bande courante
 	var->o.drawStartY = -var->o.spriteHeight / 2 + WIN_X / 2 + var->s.vMoveScreen;
@@ -123,7 +124,7 @@ void 	objet(t_var *var, int x, int y)
 					color_b = var->t.texture_obj[i];
 					i = (y * WIN_X + x) * 4;
 					if (i > 0 && i < (WIN_X * WIN_X * 4) && (color_r != 152 && color_g != 0 && color_b != 136))
-						mlx_pixel_put_to_image(var->d, x, y, rgb_to_hexa(color_r, color_g, color_b));
+						mlx_pixel_put_to_image(var->mlx, x, y, rgb_to_hexa(color_r, color_g, color_b));
 					}
 				}
 

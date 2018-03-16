@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/14 05:48:37 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:00:00 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	ft_change_tex(t_var *var)
 {
 	void *pt_texture;
 
-	mlx_destroy_image(var->d.mlx, var->d.img);
-	var->d.mlx = mlx_init();
-	pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/Swastika.xpm",
+	mlx_destroy_image(var->mlx.mlx, var->d.img);
+	var->mlx.mlx = mlx_init();
+	pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/Swastika.xpm",
 					&var->t.w_tex_mur_nord, &var->t.h_tex_mur_nord);
-	var->t.tex_mur_nord = mlx_get_data_addr(pt_texture, &(var->d.bpp),
+	var->t.tex_mur_nord = mlx_get_data_addr(pt_texture, &(var->mlx.bpp),
 					&(var->d.size_line), &(var->d.endian));
-	var->d.img = mlx_new_image(var->d.mlx, WIN_X, WIN_Y);
-	var->d.map = mlx_get_data_addr(var->d.img, &var->d.bpp, \
-		&var->d.size_line, &var->d.endian);
+	var->mlx.img = mlx_new_image(var->mlx.mlx, WIN_X, WIN_Y);
+	var->mlx.map = mlx_get_data_addr(var->mlx.img, &var->mlx.bpp, \
+		&var->mlx.size_line, &var->mlx.endian);
 	ft_raycasting(var);
 }
 
@@ -34,31 +34,31 @@ void    ft_init(t_var *var)
 {
 		void *pt_texture;
 
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/wood.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/wood.xpm",
                         &var->t.w_tex_mur_nord, &var->t.h_tex_mur_nord);
         var->t.tex_mur_nord = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/chat.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/chat.xpm",
                         &var->t.w_tex_mur_sud, &var->t.h_tex_mur_sud);
         var->t.tex_mur_sud = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/stone.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/stone.xpm",
                         &var->t.w_tex_mur_west, &var->t.h_tex_mur_west);
         var->t.tex_mur_west = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/brick.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/brick.xpm",
                         &var->t.w_tex_mur_est, &var->t.h_tex_mur_est);
         var->t.tex_mur_est = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-		pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/grass.xpm",
+		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/grass.xpm",
 						&var->t.w_texture_floor, &var->t.h_texture_floor );
 		var->t.texture_floor = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
-		pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/metal.xpm",
+		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/metal.xpm",
 						&var->t.w_tex_sky, &var->t.h_tex_sky );
 		var->t.tex_sky = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
-		pt_texture = mlx_xpm_file_to_image(var->d.mlx, "./texture/soldat.xpm",
+		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/soldat.xpm",
 						&var->t.w_texture_obj, &var->t.h_texture_obj );
 		var->t.texture_obj = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
@@ -101,8 +101,8 @@ void ft_init_struct(t_var *var)
 {
 	var->d.del = 0;
 	var->d.del_wall = 1;
-	var->d.posX = 22;
-	var->d.posY = 11;
+	var->d.posX = 2;
+	var->d.posY = 2;
 	var->d.dirX = -1.0;
 	var->d.dirY = 0.0;
 	var->d.planeX = 0;
@@ -120,6 +120,9 @@ void ft_init_struct(t_var *var)
 	var->beta = 900; //360
 	var->teta = 30;	//50 /proj iso
 
+	var->alpha = 0; //100
+	var->beta = 0; //360
+	var->teta = 1440;	//50 /proj iso
 	// var->alpha = 0; //100
 	// var->beta = 890; //360 /// projection parrallele
 	// var->teta = 30;

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/14 05:31:48 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:38:59 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,19 @@ typedef struct s_coord
 	int 	x;
 	int	 	y;
 }				t_coord;
+
+typedef struct s_mlx
+{
+	void	*img;
+	char	*map;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	void	*init;
+	void	*wdow;
+	void	*mlx;
+	void	*win;
+}				t_mlx;
 
 typedef struct s_parsing
 {
@@ -127,6 +140,17 @@ typedef struct s_obj
 	double transformY;
 }				t_obj;
 
+typedef struct		s_ligne
+{
+	int				dx;
+	int				dy;
+	int				xplus;
+	int				yplus;
+	int				cumul;
+	int				x;
+	int				y;
+}					t_ligne;
+
 typedef struct s_lst_obj
 {
 	t_coord 			coord;
@@ -136,7 +160,7 @@ typedef struct s_lst_obj
 typedef struct s_tab
 {
 	t_lst_obj 	*obj;
-	int			dist;
+	double			dist;
 }				t_tab;
 
 typedef struct s_texture
@@ -189,6 +213,7 @@ typedef struct s_var
 	int beta;
 	int teta;
 
+	t_mlx 		mlx;
 	t_scaling	s;
 	t_obj		o;
 	t_lst_obj	*lst;
@@ -199,6 +224,7 @@ typedef struct s_var
 	t_parsing	parsing;
 }				t_var;
 
+void			ft_ligne(t_mlx mlx, t_coord p, t_coord p2, int color);
 void	ft_change_tex(t_var *var);
 int		ft_exit_click(int i);
 void	ft_condtion_ray(t_var *var);
@@ -207,14 +233,13 @@ void	ft_put_map(t_var *var);
 void	sol(t_var *var, int x, int y);
 int 	**parsing(t_parsing *p, char *str);
 void	ciel(t_var *var, int x, int y);
-void	mlx_pixel_put_to_image(t_draw draw, int x, int y, int color);
+void	mlx_pixel_put_to_image(t_mlx mlx, int x, int y, int color);
 void	ft_init_struct(t_var *var);
 void	mur(t_var *var, int x, int y);
 void	fps_counter(t_var *var);
 void	ft_raycasting(t_var *var);
-int my_key_funct(int keycode, t_var *var);
+int 	my_key_funct(int keycode, t_var *var);
 int		rgb_to_hexa(int r, int g, int b);
-void ft_aff_obj(t_var *var);
-
+void 	ft_aff_obj(t_var *var);
 
 #endif

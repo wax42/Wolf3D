@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:11 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/12 13:29:26 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/15 22:53:45 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	sol(t_var *var, int x, int y)
 		color_r = var->t.texture_floor[i + 2];
 		color_g = var->t.texture_floor[i + 1];
 		color_b = var->t.texture_floor[i];
-		mlx_pixel_put_to_image(var->d, x, y, rgb_to_hexa(color_r, color_g, color_b));
+		mlx_pixel_put_to_image(var->mlx, x, y, rgb_to_hexa(color_r, color_g, color_b));
 	}
 }
