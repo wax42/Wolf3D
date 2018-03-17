@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:48:55 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/16 17:48:55 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/17 13:40:50 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int my_key_funct(int keycode, t_var *var)
 {
+	double cal_y;
+	double cal_x;
+
 	printf("keycode\t%d\n", keycode);
 	if (keycode == K_ESC)
 		exit(1);
@@ -34,7 +37,18 @@ int my_key_funct(int keycode, t_var *var)
 		var->beta += 10;
 	if (keycode == 87)
 		var->beta -= 10;
-
+	if (keycode == K_0)
+		var->d.menu_select = 0;
+	if (keycode == K_1)
+		var->d.menu_select = 1;
+	if (keycode == K_2)
+		var->d.menu_select = 2;
+	if (keycode == K_3)
+		var->d.menu_select = 3;
+	if (keycode == K_M)
+		var->d.mouse = 1;
+	if (keycode == K_N)
+		var->d.mouse = 0;
  	if (keycode == 92)
 		var->teta += 10;
 	if (keycode == 88)
@@ -43,10 +57,18 @@ int my_key_funct(int keycode, t_var *var)
 		printf("alpha%d beta%d teta%d\n", var->alpha, var->beta, var->teta);
 	if (keycode == K_MOVE_UP)
 	{
-			if(var->parsing.tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
-				var->d.posX += var->d.dirX * var->d.movespeed;
-			if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
-				var->d.posY += var->d.dirY * var->d.movespeed;
+		cal_x = var->d.dirX * var->d.movespeed;
+		cal_y = var->d.dirX * var->d.movespeed;
+		if ((int)(var->d.posX + cal_x) < var->parsing.max.x && var->d.mapY < (int)(var->d.posX + cal_x))
+		{
+			if ((var->d.posX + var->d.dirX * var->d.movespeed < var->parsing.max.x) && ((int)(var->d.posY + var->d.dirY * var->d.movespeed) < var->parsing.max.y && var->d.mapY > 0))
+			{
+				if(var->parsing.tab[(int)(var->d.posX + var->d.dirX * var->d.movespeed)][(int)(var->d.posY)] == 0)
+					var->d.posX += var->d.dirX * var->d.movespeed;
+				if(var->parsing.tab[(int)(var->d.posX)][(int)(var->d.posY + var->d.dirY * var->d.movespeed)] == 0)
+					var->d.posY += var->d.dirY * var->d.movespeed;
+			}
+		}
 	}
 	if (keycode == K_MOVE_DOWN)
 	{

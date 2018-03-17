@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/16 14:38:59 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/17 12:53:38 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 # define K_Y	16
 # define K_T	17
 # define K_ESC	53
+# define K_M	46
+# define K_N	45
+# define K_T	17
+# define K_0	82
+# define K_1	83
+# define K_2	84
+# define K_3	85
 # define K_MOVE_UP	13
 # define K_MOVE_DOWN	1
 # define K_MOVE_LEFT 0
@@ -123,6 +130,11 @@ typedef struct s_draw
 	int floorTexY;
 	int del_wall;
 	int del;
+	char *pistol;
+	char *menu;
+	char *start_menu;
+	int mouse;
+	int menu_select;
 }			t_draw;
 
 typedef struct s_obj
@@ -191,6 +203,10 @@ typedef struct s_texture
 	int			w_texture_obj;
 	int			h_texture_obj;
 
+	char		*tex_menu;
+	int			w_tex_menu;
+	int			h_tex_menu;
+
 	char		*texture;
 	int			w_texture;
 	int			h_texture;
@@ -241,5 +257,7 @@ void	ft_raycasting(t_var *var);
 int 	my_key_funct(int keycode, t_var *var);
 int		rgb_to_hexa(int r, int g, int b);
 void 	ft_aff_obj(t_var *var);
+int		mouse_hook(int x, int y, t_var *var);
+void	ft_menu(t_var *var);
 
 #endif

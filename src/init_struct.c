@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/16 15:00:00 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/17 12:52:55 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ void    ft_init(t_var *var)
 {
 		void *pt_texture;
 
-        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/wood.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/wall2h.xpm",
                         &var->t.w_tex_mur_nord, &var->t.h_tex_mur_nord);
         var->t.tex_mur_nord = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/chat.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/wall3h.xpm",
                         &var->t.w_tex_mur_sud, &var->t.h_tex_mur_sud);
         var->t.tex_mur_sud = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/stone.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/wall1h.xpm",
                         &var->t.w_tex_mur_west, &var->t.h_tex_mur_west);
         var->t.tex_mur_west = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/brick.xpm",
+        pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/metal.xpm",
                         &var->t.w_tex_mur_est, &var->t.h_tex_mur_est);
         var->t.tex_mur_est = mlx_get_data_addr(pt_texture, &(var->d.bpp),
                         &(var->d.size_line), &(var->d.endian));
-		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/grass.xpm",
+		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/ceil4.xpm",
 						&var->t.w_texture_floor, &var->t.h_texture_floor );
 		var->t.texture_floor = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
-		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/metal.xpm",
+		pt_texture = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/ceil2.xpm",
 						&var->t.w_tex_sky, &var->t.h_tex_sky );
 		var->t.tex_sky = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
@@ -62,6 +62,10 @@ void    ft_init(t_var *var)
 						&var->t.w_texture_obj, &var->t.h_texture_obj );
 		var->t.texture_obj = mlx_get_data_addr(pt_texture, &(var->d.bpp),
 						&(var->d.size_line), &(var->d.endian));
+		var->d.pistol = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/pistol1.xpm",
+						&var->t.w_tex_menu, &var->t.h_tex_menu );
+		var->d.start_menu = mlx_xpm_file_to_image(var->mlx.mlx, "./texture/start_menu.xpm",
+						&var->t.w_tex_menu, &var->t.h_tex_menu );
 }
 
 t_lst_obj *add_obj(t_coord coord, t_lst_obj *tmp)
