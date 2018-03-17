@@ -6,13 +6,12 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/17 12:52:55 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/17 15:58:04 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-#include <stdio.h>
 
 void	ft_change_tex(t_var *var)
 {

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/17 12:33:31 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/17 16:15:38 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	fps_counter(t_var *var)
 {
 	struct timeval	tp;
 	char			*tmp;
-
+	
 	var->d.oldtime = var->d.time;
 	gettimeofday(&tp, NULL);
 	var->d.time = tp.tv_usec;

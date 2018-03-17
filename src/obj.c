@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/17 12:21:49 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/03/17 15:58:04 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,26 @@
 void 	ft_init_obj(t_var *var, int x, int y)
 {
 	double invDet;
-
 	double spriteX;
 	double spriteY;
 
 	var->o.coord.x = x;
 	var->o.coord.y = y;
-	spriteX = (double)(x) + 0.4 - var->d.posX; // calcul de la longeur du rayon seulement quqnd on touche l obj
-	spriteY = (double)(y) + 0.4 - var->d.posY; // calcul de la longeur du rayon seulement quqnd on touche l obj
-	invDet = 1.0 / (var->d.planeX * var->d.dirY - var->d.dirX * var->d.planeY); // requis pour une bonne multiplication de la matrice
+	spriteX = (double)(x) + 0.4 - var->d.posX;
+	spriteY = (double)(y) + 0.4 - var->d.posY;
+	invDet = 1.0 / (var->d.planeX * var->d.dirY - var->d.dirX * var->d.planeY);
 	var->o.transformX = invDet * (var->d.dirY * spriteX - var->d.dirX * spriteY);
-	var->o.transformY = invDet * (-var->d.planeY * spriteX + var->d.planeX * spriteY); // c'est en fait la profondeur à l'intérieur de l'écran, que Z est en 3D
+	var->o.transformY = invDet * (-var->d.planeY * spriteX + var->d.planeX * spriteY);
 	var->o.spriteScreenX = (int)((WIN_Y / 2) * (1 + var->o.transformX / var->o.transformY));
 	var->s.vMoveScreen = (int)(vMove / var->o.transformY);
-	var->o.spriteHeight = abs((int)(WIN_X / var->o.transformY)) / vDiv; ///bellec au Y
+	var->o.spriteHeight = abs((int)(WIN_X / var->o.transformY)) / vDiv;
 	var->o.drawStartY = -var->o.spriteHeight / 2 + WIN_X / 2 + var->s.vMoveScreen;
 	if (var->o.drawStartY < 0)
 		var->o.drawStartY = 0;
 	var->o.drawEndY = var->o.spriteHeight / 2 + WIN_X / 2 + var->s.vMoveScreen;
 	if (var->o.drawEndY >= WIN_X)
 		var->o.drawEndY = WIN_X - 1;
-
-      // calcule la largeur de l'image-objet
-	var->o.spriteWidth = abs((int)(WIN_X / var->o.transformY)) / uDiv; ///bellec au Y
+	var->o.spriteWidth = abs((int)(WIN_X / var->o.transformY)) / uDiv;
 	var->o.drawStartX = -var->o.spriteWidth / 2 + var->o.spriteScreenX;
 	if (var->o.drawStartX < 0)
 		var->o.drawStartX = 0;
@@ -54,16 +51,16 @@ int	ft_lancer_d_obj(t_var *var)
 		if (var->d.sideDistX < var->d.sideDistY)
 		{
 			var->d.sideDistX += var->d.deltaDistX;
-			var->d.mapX += var->d.stepX; // pour faire avancer la position du rayon sur la map
+			var->d.mapX += var->d.stepX;
 		}
 		else
 		{
 			var->d.sideDistY += var->d.deltaDistY;
 			var->d.mapY += var->d.stepY;
 		}
-		if (var->d.mapX < 24 && var->d.mapX >= 0 && var->d.mapY < 24 && var->d.mapY >= 0)
+		if (var->d.mapX < var->parsing.max.x && var->d.mapX >= 0 && var->d.mapY < var->parsing.max.y && var->d.mapY >= 0)
 		{
-			if (var->d.mapX == var->o.coord.x && var->d.mapY == var->o.coord.y) // le rayon a trouvé un obj
+			if (var->d.mapX == var->o.coord.x && var->d.mapY == var->o.coord.y)
 				return (1);
 			else if (var->parsing.tab[var->d.mapX][var->d.mapY] > 0 && var->parsing.tab[var->d.mapX][var->d.mapY] != 9) // le rayon a trouvé une mur
 				return (0);
