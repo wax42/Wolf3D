@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/20 14:34:35 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:16:20 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		ft_lancer_d_obj(t_var *var)
 				var->parsing.tab[var->r.mapx][var->r.mapy] != 9)
 				return (0);
 		}
+		else
+			return (0);
 	}
 	return (0);
 }
