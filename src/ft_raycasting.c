@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:24:49 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:08:23 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	ft_lancer_de_rayon(t_var *var)
 		if ((var->r.mapx < var->parsing.max.x && var->r.mapx > 0) &&\
 						(var->r.mapy < var->parsing.max.y && var->r.mapy > 0))
 		{
-			if (var->parsing.tab[var->r.mapx][var->r.mapy] > 1 && \
-								var->parsing.tab[var->r.mapx][var->r.mapy] != 9)
+			if (var->parsing.tab[var->r.mapy][var->r.mapx] > 1 && \
+								var->parsing.tab[var->r.mapy][var->r.mapx] != 9)
 				var->r.hit = 1;
-			if (var->parsing.tab[var->r.mapx][var->r.mapy] == 3 && \
+			if (var->parsing.tab[var->r.mapy][var->r.mapx] == 3 && \
 																var->r.del == 1)
-				var->parsing.tab[var->r.mapx][var->r.mapy] = 1;
+				var->parsing.tab[var->r.mapy][var->r.mapx] = 1;
 		}
 		else
 			var->r.hit = 1;

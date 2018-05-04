@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 16:38:03 by vguerand          #+#    #+#             */
-/*   Updated: 2017/11/14 17:39:13 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 18:17:06 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ int				ft_atoi(const char *str)
 	{
 		nb = -nb;
 	}
+	if (i == 0)
+		return (-1);
 	return (nb);
 }

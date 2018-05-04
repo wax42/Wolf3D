@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:24:49 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:43:50 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define K_ARROW_DOWM 125
 # define K_ARROW_LEFT 123
 # define K_ARROW_RIGHT 124
+# define MAP_MAX 124
 
 typedef struct	s_coord
 {

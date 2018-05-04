@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 16:27:28 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:35:26 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		**parse_tab(int **tab, int y_max, int x_max, int fd)
 			if (x >= x_max)
 				break ;
 			tab[y][x] = ft_atoi(line + i);
+			(tab[y][x] == -1) ? (tab[y][x] = 2) : 0;
 			(tab[y][x] < 0 || tab[y][x] > 9) ? ft_exit(1) : NULL;
 			i++;
 		}
@@ -76,11 +77,11 @@ int		**parsing(t_parsing *p, char *str)
 		ft_exit(0);
 	x_max = ft_atoi(line);
 	y_max = ft_atoi(line + ft_nbrlen(x_max) + 1);
+	if ((x_max == -1 || x_max > MAP_MAX) || (y_max == -1 || y_max > MAP_MAX))
+		ft_exit(4);
 	tab = ft_tabint(x_max + 1, y_max + 1, 2);
 	ft_strdel(&line);
-	ft_putstr("mon chat");
 	tab = parse_tab(tab, y_max, x_max, fd);
-	ft_putstr("mon chat");
 	p->max.y = y_max;
 	p->max.x = x_max;
 	return (tab);

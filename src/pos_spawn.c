@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:10:57 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 16:29:34 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:44:19 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	ft_pos_spawn(t_var *var)
 			{
 				bol++;
 				var->parsing.tab[y][x] = 1;
-				var->r.posx = y;
-				var->r.posy = x;
+				var->r.posx = x;
+				var->r.posy = y;
 			}
 			ft_putchar(' ');
 		}

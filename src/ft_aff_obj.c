@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 13:10:41 by vguerand          #+#    #+#             */
-/*   Updated: 2018/03/18 20:59:34 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:13:38 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	ft_aff_obj(t_var *var)
 	ft_buble_sort_decrois(tab, var->nbr_elem);
 	i = -1;
 	while (++i < var->nbr_elem)
-		objet(var, tab[i].obj->coord.y, tab[i].obj->coord.x);
+		objet(var, tab[i].obj->coord.x, tab[i].obj->coord.y);
 	free(tab);
 }

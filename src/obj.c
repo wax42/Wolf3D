@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:11:01 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int		ft_lancer_d_obj(t_var *var)
 		{
 			if (var->r.mapx == var->o.coord.x && var->r.mapy == var->o.coord.y)
 				return (1);
-			else if (var->parsing.tab[var->r.mapx][var->r.mapy] > 1 &&\
-				var->parsing.tab[var->r.mapx][var->r.mapy] != 9)
+			else if (var->parsing.tab[var->r.mapy][var->r.mapx] > 1 &&\
+				var->parsing.tab[var->r.mapy][var->r.mapx] != 9)
 				return (0);
 		}
 		else
@@ -86,7 +86,7 @@ void	objet(t_var *var, int x, int y)
 		if (obj_check(var, x))
 		{
 			if (var->o.transformy > 0 && x > 0 && x < WIN_X && \
-				var->o.transformy < var->parsing.tab[var->r.mapx][var->r.mapy])
+				var->o.transformy < var->parsing.tab[var->r.mapy][var->r.mapx])
 				while (++y < var->o.drawendy)
 				{
 					d = ((y - var->vmovescreen) * 256 - WIN_Y * 128 + \
