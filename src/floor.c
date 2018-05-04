@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:11 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/19 12:25:16 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/05/04 03:17:30 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ void	floor_find_side(t_var *var)
 		var->r.drawend = WIN_X;
 }
 
-void	ft_floor(t_var *var, int x, int y)
+void	ft_floor(t_var *var, int x)
 {
+	int y;
 	int i;
 	int color_g;
 	int color_b;

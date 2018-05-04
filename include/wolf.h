@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/20 16:21:43 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 03:19:33 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,9 +247,9 @@ int				ft_exit_click(void);
 void			ft_condtion_ray(t_var *var);
 void			objet(t_var *var, int x, int y);
 void			ft_put_map(t_var *var);
-void			ft_floor(t_var *var, int x, int y);
-void			sky(t_var *var, int x, int y);
-void			mur(t_var *var, int x, int y);
+void			ft_floor(t_var *var, int x);
+void			sky(t_var *var, int x);
+void			mur(t_var *var, int x);
 int				**parsing(t_parsing *p, char *str);
 void			mlx_pixel_put_to_image(t_mlx mlx, int x, int y, int color);
 void			ft_init_struct(t_var *var);

@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:23 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/19 13:43:06 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/05/04 03:18:21 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ void	sky_find_side(t_var *var)
 		var->r.drawend = WIN_X;
 }
 
-void	sky(t_var *var, int x, int y)
+void	sky(t_var *var, int x)
 {
+	int y;
 	int i;
 	int color_g;
 	int color_b;

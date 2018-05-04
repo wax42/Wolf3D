@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 02:37:27 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/20 13:44:22 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/05/04 03:19:50 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,16 @@ void	mlx_put_image_to_image(t_var *var)
 void	ft_raycasting(t_var *var)
 {
 	int x;
-	int y;
 
 	x = -1;
-	y = 0;
 	while (++x < WIN_X)
 	{
 		ft_init_raycasting(var, x);
 		ft_lancer_de_rayon(var);
 		ft_width_wall(var);
-		mur(var, x, y);
-		sky(var, x, y);
-		ft_floor(var, x, y);
+		mur(var, x);
+		sky(var, x);
+		ft_floor(var, x);
 	}
 	ft_put_map(var);
 	ft_aff_obj(var);

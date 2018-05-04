@@ -6,7 +6,7 @@
 /*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/18 03:59:09 by wsabates         ###   ########.fr       */
+/*   Updated: 2018/05/04 03:16:42 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void	ft_value_wall(t_var *var)
 		var->t.texture_x -= var->t.w_texture - 1;
 }
 
-void	mur(t_var *var, int x, int y)
+void	mur(t_var *var, int x)
 {
+	int y;
 	int d;
 	int color_g;
 	int color_b;
