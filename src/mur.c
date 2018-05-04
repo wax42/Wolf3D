@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mur.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 14:43:04 by wsabates          #+#    #+#             */
-/*   Updated: 2018/05/04 03:16:42 by vguerand         ###   ########.fr       */
+/*   Created: 2018/02/19 14:43:04 by vguerand          #+#    #+#             */
+/*   Updated: 2018/05/04 15:29:52 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ft_value_wall(t_var *var)
 void	mur(t_var *var, int x)
 {
 	int y;
-	int d;
 	int color_g;
 	int color_b;
 	int color_r;
@@ -73,8 +72,8 @@ void	mur(t_var *var, int x)
 	y = var->r.drawstart - 1;
 	while (++y < var->r.drawend)
 	{
-		d = y * 256 - WIN_X * 128 + (var->r.lineheight) * 128;
-		var->t.texture_y = (d * var->t.h_texture) / (var->r.lineheight) / 256;
+		i = y * 256 - WIN_X * 128 + (var->r.lineheight) * 128;
+		var->t.texture_y = (i * var->t.h_texture) / (var->r.lineheight) / 256;
 		if (var->t.texture_y >= 0)
 		{
 			i = (var->t.texture_y * var->t.w_texture + var->t.texture_x) * 4;

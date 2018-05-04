@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pos_spawn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/19 16:10:57 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/20 16:22:37 by vguerand         ###   ########.fr       */
+/*   Created: 2018/03/19 16:10:57 by vguerand          #+#    #+#             */
+/*   Updated: 2018/05/04 16:29:34 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
-
-void	ft_pos_spawn_check(t_var *var, int x, int y)
-{
-	if ((x == 0 || y == 0) && (x == var->parsing.max.x || \
-											y == var->parsing.max.y))
-	{
-		if (var->parsing.tab[x][y] != 2)
-			ft_exit(0);
-	}
-}
 
 void	ft_pos_spawn(t_var *var)
 {
@@ -28,23 +18,25 @@ void	ft_pos_spawn(t_var *var)
 	int y;
 	int bol;
 
-	x = -1;
+	y = -1;
 	bol = 0;
-	while (++x < var->parsing.max.x)
+	while (++y < var->parsing.max.y)
 	{
-		y = -1;
-		while (++y < var->parsing.max.y)
+		x = -1;
+		while (++x < var->parsing.max.x)
 		{
-			if (var->parsing.tab[x][y] == 0)
+			ft_putnbr(var->parsing.tab[y][x]);
+			if (var->parsing.tab[y][x] == 0)
 			{
 				bol++;
-				var->parsing.tab[x][y] = 1;
-				var->r.posx = x;
-				var->r.posy = y;
+				var->parsing.tab[y][x] = 1;
+				var->r.posx = y;
+				var->r.posy = x;
 			}
-			ft_pos_spawn_check(var, x, y);
+			ft_putchar(' ');
 		}
+		ft_putchar('\n');
 	}
 	if (bol != 1)
-		ft_exit(0);
+		ft_exit(1);
 }

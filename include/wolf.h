@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/14 13:37:17 by wsabates          #+#    #+#             */
-/*   Updated: 2018/05/04 03:19:33 by vguerand         ###   ########.fr       */
+/*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
+/*   Updated: 2018/05/04 15:24:49 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@
 # define K_ARROW_DOWM 125
 # define K_ARROW_LEFT 123
 # define K_ARROW_RIGHT 124
-
-typedef struct	s_scaling
-{
-	int vmovescreen;
-}				t_scaling;
 
 typedef struct	s_coord
 {
@@ -227,13 +222,13 @@ typedef struct	s_var
 	t_fps				fps;
 	t_floor				f;
 	t_mlx				mlx;
-	t_scaling			s;
 	t_obj				o;
 	t_lst_obj			*lst;
 	int					nbr_elem;
 	t_raycasting		r;
 	t_texture			t;
 	t_parsing			parsing;
+	int					vmovescreen;
 }				t_var;
 
 void			ft_pos_spawn(t_var *var);

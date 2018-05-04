@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_commands.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/18 02:37:27 by wsabates          #+#    #+#             */
-/*   Updated: 2018/05/04 03:19:50 by vguerand         ###   ########.fr       */
+/*   Created: 2018/03/18 02:37:27 by vguerand          #+#    #+#             */
+/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

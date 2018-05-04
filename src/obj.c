@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wsabates <wsabates@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 15:21:08 by wsabates          #+#    #+#             */
-/*   Updated: 2018/03/21 13:16:20 by vguerand         ###   ########.fr       */
+/*   Created: 2018/03/05 15:21:08 by vguerand          #+#    #+#             */
+/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	objet(t_var *var, int x, int y)
 				var->o.transformy < var->parsing.tab[var->r.mapx][var->r.mapy])
 				while (++y < var->o.drawendy)
 				{
-					d = ((y - var->s.vmovescreen) * 256 - WIN_Y * 128 + \
+					d = ((y - var->vmovescreen) * 256 - WIN_Y * 128 + \
 						var->o.spriteheight * 128);
 					var->t.texture_y = ((d * var->t.h_texture_obj) / \
 													var->o.spriteheight) / 256;
