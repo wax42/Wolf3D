@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/05 04:49:22 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 01:32:27 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 void	ft_fps_counter(t_var *var)
 {
-	struct timeval	tp;
 	char			*tmp;
+	int 			bol;
 
-	var->fps.oldtime = var->fps.time;
-	gettimeofday(&tp, NULL);
-	var->fps.time = tp.tv_usec;
-	var->fps.frametime = round((var->fps.time - var->fps.oldtime) / 1000);
-	if (var->fps.frametime < 0)
-		ft_fps_counter(var);
-	tmp = ft_itoa((int)var->fps.frametime);
+	bol = 1;
+	var->fps.old = var->fps.time1;
+	gettimeofday(&var->fps.time1, NULL);
+	if (var->fps.time1.tv_sec == var->fps.old.tv_sec)
+	{
+		var->fps.compt++;
+		bol = 0;
+	}
+	tmp = ft_itoa((int)(var->fps.oldcompt));
 	mlx_string_put(var->mlx.mlx, var->mlx.win, WIN_X / 100 + 700, WIN_Y / 100, \
 		0xFF0000, "FPS:");
 	mlx_string_put(var->mlx.mlx, var->mlx.win, WIN_X / 100 + 740, \
 		WIN_Y / 100, 0xFF0000, tmp);
 	free(tmp);
+	if (bol)
+	{
+		var->fps.oldcompt = var->fps.compt;
+		var->fps.compt = 0;
+	}
 }
 
 void	ft_mlx_put_pixel_image_square(t_var *var, int x, int y, \

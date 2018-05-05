@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/05 01:27:32 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/05 20:23:48 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		**parse_tab(int **tab, int y_max, int x_max, int fd)
 	y = 0;
 	while (get_next_line(fd, &line) > 0 && y_max >= y)
 	{
+		ft_putendl(line);
 		i = -1;
 		x = -1;
 		while (line[++i])
@@ -51,9 +52,10 @@ int		**parse_tab(int **tab, int y_max, int x_max, int fd)
 			if (x >= x_max)
 				break ;
 			tab[y][x] = ft_atoi(line + i);
+			ft_putnbr(tab[y][x]);
 			(tab[y][x] == -1) ? (tab[y][x] = 2) : 0;
-			(tab[y][x] < 0 || tab[y][x] > 9) ? ft_exit(1) : NULL;
-			i++;
+			(tab[y][x] < 0 || tab[y][x] > 9) ? ft_exit(3) : NULL;
+			if (line[i++]){}
 		}
 		ft_strdel(&line);
 		y++;

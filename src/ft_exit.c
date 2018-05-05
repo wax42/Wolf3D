@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:32:05 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 19:36:22 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 01:47:09 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_exit(int code)
 		ft_putendl("TEXTURE NOT VALID");
 	else if (code == 4)
 		ft_putendl("ERROR SIZE MAP");
+	else if (code == 5)
+		ft_putendl("ERROR MALLOC");
 	exit(0);
 }
 

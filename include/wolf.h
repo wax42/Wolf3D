@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/05 01:13:08 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 01:28:28 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,13 @@ typedef struct	s_floor
 
 }				t_floor;
 
+
 typedef struct	s_fps
 {
-	double	oldtime;
-	double	time;
-	double	frametime;
+	struct timeval old;
+	struct timeval time1;
+	int 		compt;
+	int 		oldcompt;
 }				t_fps;
 
 typedef struct	s_raycasting
@@ -244,7 +246,6 @@ void			ft_condtion_ray(t_var *var);
 void			objet(t_var *var, int x, int y);
 void			ft_put_map(t_var *var);
 void			ft_floor(t_var *var, int x);
-void			sky(t_var *var, int x);
 void			mur(t_var *var, int x);
 int				**parsing(t_parsing *p, char *str);
 void			mlx_pixel_put_to_image(t_mlx mlx, int x, int y, int color);

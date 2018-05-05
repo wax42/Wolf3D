@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 01:46:48 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_lst_obj	*add_obj(t_coord coord, t_lst_obj *tmp)
 {
 	t_lst_obj *header;
 
-	header = (t_lst_obj*)malloc(sizeof(t_lst_obj));
+	if (!(header = (t_lst_obj*)malloc(sizeof(t_lst_obj))))
+		ft_exit(5);
 	header->coord = coord;
 	header->next = tmp;
 	return (header);
@@ -54,8 +55,8 @@ void		ft_init_struct(t_var *var)
 	var->r.diry = 0.0;
 	var->r.planex = 0;
 	var->r.planey = 0.66;
-	var->fps.time = 0;
-	var->fps.oldtime = 0;
+	var->fps.compt = 0;
+	var->fps.oldcompt = 0;
 	var->r.movespeed = 0.5;
 	var->r.rotate = 0.2;
 	var->r.olddirx = 0;

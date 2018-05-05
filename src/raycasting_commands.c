@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 02:37:27 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/05 22:21:53 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_raycasting(t_var *var)
 		ft_lancer_de_rayon(var);
 		ft_width_wall(var);
 		mur(var, x);
-		sky(var, x);
+		// sky(var, x);
 		ft_floor(var, x);
 	}
 	ft_put_map(var);
