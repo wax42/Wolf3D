@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 19:35:26 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/05 01:27:32 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		**parsing(t_parsing *p, char *str)
 	y_max = ft_atoi(line + ft_nbrlen(x_max) + 1);
 	if ((x_max == -1 || x_max > MAP_MAX) || (y_max == -1 || y_max > MAP_MAX))
 		ft_exit(4);
-	tab = ft_tabint(x_max + 1, y_max + 1, 2);
+	tab = ft_tabint(x_max + 1, y_max + 1, 1);
 	ft_strdel(&line);
 	tab = parse_tab(tab, y_max, x_max, fd);
 	p->max.y = y_max;

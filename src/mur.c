@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:29:52 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 22:18:43 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	mur(t_var *var, int x)
 
 	ft_value_wall(var);
 	y = var->r.drawstart - 1;
-	while (++y < var->r.drawend)
+	while (++y < var->r.drawend + 1)
 	{
-		i = y * 256 - WIN_X * 128 + (var->r.lineheight) * 128;
+		i = y * 256 - WIN_Y * 128 + (var->r.lineheight) * 128;
 		var->t.texture_y = (i * var->t.h_texture) / (var->r.lineheight) / 256;
 		if (var->t.texture_y >= 0)
 		{
@@ -80,8 +80,8 @@ void	mur(t_var *var, int x)
 			color_r = var->t.texture[i + 2];
 			color_g = var->t.texture[i + 1];
 			color_b = var->t.texture[i];
-			i = (y * WIN_X + x) * 4;
-			if (i > 0 && i < (WIN_X * WIN_X * 4))
+			i = (y * WIN_Y + x) * 4;
+			if (i > 0 && i < (WIN_Y * WIN_Y * 4))
 				mlx_pixel_put_to_image(var->mlx, x, y, \
 										rgb_to_hexa(color_r, color_g, color_b));
 		}

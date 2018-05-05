@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 19:02:00 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/05 04:49:22 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,7 @@ void	ft_put_map(t_var *var)
 	}
 	p.x = floor(var->r.posx) * var->r.denom + 3;
 	p.y = floor(var->r.posy) * var->r.denom + 3;
-	p2.x = p.x + (var->r.linex - var->r.dirx) * 20;
-	p2.y = p.y - (var->r.liney - var->r.diry) * 20;
-	ft_ligne(var->mlx, p, p2, 0xFFFF00);
-	p.x = floor(var->r.posx) * var->r.denom + 4;
-	p.y = floor(var->r.posy) * var->r.denom + 3;
-	p2.x = p.x + (var->r.linex - var->r.dirx) * 20;
-	p2.y = p.y - (var->r.liney - var->r.diry) * 20;
+	p2.x = p.x + (var->r.diry - var->r.liney) * 20;
+	p2.y = p.y - (var->r.dirx - var->r.linex) * 20;
 	ft_ligne(var->mlx, p, p2, 0xFFFF00);
 }

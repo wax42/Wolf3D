@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:23 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 21:31:01 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	sky(t_var *var, int x)
 
 	sky_find_side(var);
 	y = var->r.drawend - 1;
-	while (y++ < WIN_X)
+	while (y++ < WIN_Y)
 	{
-		var->r.currentdist = WIN_X / (2.0 * y - WIN_X);
+		var->r.currentdist = WIN_Y / (2.0 * y - WIN_Y);
 		calculate_sky(var);
 		i = (var->t.w_tex_sky * var->f.floor_sky_tex_y + \
 													var->f.floor_sky_tex_x) * 4;

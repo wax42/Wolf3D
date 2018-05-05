@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:11 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:24:49 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 21:30:16 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	floor_find_side(t_var *var)
 	var->r.distwall = var->r.perpwalldist;
 	var->f.distplayer = 0.0;
 	if (var->r.drawend < 0)
-		var->r.drawend = WIN_X;
+		var->r.drawend = WIN_Y;
 }
 
 void	ft_floor(t_var *var, int x)
@@ -64,9 +64,9 @@ void	ft_floor(t_var *var, int x)
 
 	floor_find_side(var);
 	y = var->r.drawend - 1;
-	while (y++ < WIN_X)
+	while (y++ < WIN_Y)
 	{
-		var->r.currentdist = WIN_X / (2.0 * y - WIN_X);
+		var->r.currentdist = WIN_Y / (2.0 * y - WIN_Y);
 		calculate_floor(var);
 		i = (var->t.w_texture_floor * var->f.floor_sky_tex_y + \
 													var->f.floor_sky_tex_x) * 4;

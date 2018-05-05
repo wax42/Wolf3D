@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 03:35:21 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 15:25:04 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 21:32:10 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	ft_cal_img_width(t_var *var)
 
 void	ft_cal_img_height(t_var *var)
 {
-	var->o.drawstarty = -var->o.spriteheight / 2 + WIN_X / 2 + \
+	var->o.drawstarty = -var->o.spriteheight / 2 + WIN_Y / 2 + \
 	var->vmovescreen;
 	if (var->o.drawstarty < 0)
 		var->o.drawstarty = 0;
-	var->o.drawendy = var->o.spriteheight / 2 + WIN_X / 2 + var->vmovescreen;
-	if (var->o.drawendy >= WIN_X)
-		var->o.drawendy = WIN_X - 1;
+	var->o.drawendy = var->o.spriteheight / 2 + WIN_Y / 2 + var->vmovescreen;
+	if (var->o.drawendy >= WIN_Y)
+		var->o.drawendy = WIN_Y - 1;
 }
 
 void	ft_init_obj(t_var *var, int x, int y)
@@ -49,10 +49,10 @@ void	ft_init_obj(t_var *var, int x, int y)
 	(var->r.diry * spritex - var->r.dirx * spritey);
 	var->o.transformy = indev * \
 	(-var->r.planey * spritex + var->r.planex * spritey);
-	var->o.spritescreenx = (int)((WIN_Y / 2) * \
+	var->o.spritescreenx = (int)((WIN_X / 2) * \
 	(1 + var->o.transformx / var->o.transformy));
 	var->vmovescreen = (int)(VMOVE / var->o.transformy);
-	var->o.spriteheight = abs((int)(WIN_X / var->o.transformy)) / VDIV;
+	var->o.spriteheight = abs((int)(WIN_Y / var->o.transformy)) / VDIV;
 	ft_cal_img_height(var);
 	ft_cal_img_width(var);
 	var->o.bol = 1;

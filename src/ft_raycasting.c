@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 19:08:23 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/04 22:27:23 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	ft_width_wall(t_var *var)
 									(1 - var->r.stepy) / 2) / var->r.raydiry;
 	if (var->r.perpwalldist == -0.0)
 		var->r.perpwalldist = 0.5;
-	var->r.lineheight = (int)(WIN_X / var->r.perpwalldist);
-	var->r.drawstart = -var->r.lineheight / 2 + WIN_X / 2;
+	var->r.lineheight = (int)(WIN_Y / var->r.perpwalldist);
+	var->r.drawstart = -var->r.lineheight / 2 + WIN_Y / 2;
 	if (var->r.drawstart < 0)
 		var->r.drawstart = 0;
-	var->r.drawend = var->r.lineheight / 2 + WIN_X / 2;
-	if (var->r.drawend >= WIN_X)
-		var->r.drawend = WIN_X - 1;
+	var->r.drawend = var->r.lineheight / 2 + WIN_Y / 2;
+	if (var->r.drawend >= WIN_Y)
+		var->r.drawend = WIN_Y - 1;
 }
 
 void	ft_find_side(t_var *var)
