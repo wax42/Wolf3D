@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/05 20:23:48 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 03:35:42 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,17 @@ int		**parse_tab(int **tab, int y_max, int x_max, int fd)
 	y = 0;
 	while (get_next_line(fd, &line) > 0 && y_max >= y)
 	{
-		ft_putendl(line);
 		i = -1;
 		x = -1;
 		while (line[++i])
 		{
-			++x;
-			if (x >= x_max)
+			if (++x >= x_max)
 				break ;
 			tab[y][x] = ft_atoi(line + i);
-			ft_putnbr(tab[y][x]);
 			(tab[y][x] == -1) ? (tab[y][x] = 2) : 0;
-			(tab[y][x] < 0 || tab[y][x] > 9) ? ft_exit(3) : NULL;
-			if (line[i++]){}
+			(tab[y][x] < 0 || tab[y][x] > 9) ? ft_exit(2) : NULL;
+			if (!line[++i])
+				break ;
 		}
 		ft_strdel(&line);
 		y++;
@@ -79,7 +77,8 @@ int		**parsing(t_parsing *p, char *str)
 		ft_exit(0);
 	x_max = ft_atoi(line);
 	y_max = ft_atoi(line + ft_nbrlen(x_max) + 1);
-	if ((x_max == -1 || x_max > MAP_MAX) || (y_max == -1 || y_max > MAP_MAX))
+	if ((x_max < MAP_MIN || x_max > MAP_MAX) || (y_max == MAP_MIN || \
+		y_max > MAP_MAX))
 		ft_exit(4);
 	tab = ft_tabint(x_max + 1, y_max + 1, 1);
 	ft_strdel(&line);

@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 19:11:01 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 03:04:48 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ void	objet(t_var *var, int x, int y)
 		y = var->o.drawstarty;
 		if (obj_check(var, x))
 		{
-			if (var->o.transformy > 0 && x > 0 && x < WIN_X && \
-				var->o.transformy < var->parsing.tab[var->r.mapy][var->r.mapx])
+			if (var->o.transformy > 0 && x > 0 && x < WIN_X)
 				while (++y < var->o.drawendy)
 				{
 					d = ((y - var->vmovescreen) * 256 - WIN_Y * 128 + \

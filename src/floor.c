@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:11 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/05 21:00:46 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 03:11:02 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,10 @@ void	ft_floor(t_var *var, int x)
 		color_b = var->t.texture_floor[i];
 		mlx_pixel_put_to_image(var->mlx, x, y, \
 										rgb_to_hexa(color_r, color_g, color_b));
-
 		color_r = var->t.tex_sky[i + 2];
 		color_g = var->t.tex_sky[i + 1];
 		color_b = var->t.tex_sky[i];
 		mlx_pixel_put_to_image(var->mlx, x, WIN_Y - y, \
 										rgb_to_hexa(color_r, color_g, color_b));
-
-
 	}
 }

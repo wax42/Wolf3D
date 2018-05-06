@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 01:28:28 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 03:47:20 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WIN_Y  800
 # define UDIV 1.1
 # define VDIV 1.1
-# define VMOVE 64.0
+# define VMOVE 0.0
 # define K_ENTER	36
 # define K_R	15
 # define K_Y	16
@@ -51,6 +51,7 @@
 # define K_ARROW_LEFT 123
 # define K_ARROW_RIGHT 124
 # define MAP_MAX 124
+# define MAP_MIN 22
 
 typedef struct	s_coord
 {
@@ -90,13 +91,12 @@ typedef struct	s_floor
 
 }				t_floor;
 
-
 typedef struct	s_fps
 {
-	struct timeval old;
-	struct timeval time1;
-	int 		compt;
-	int 		oldcompt;
+	struct timeval	old;
+	struct timeval	time1;
+	int				compt;
+	int				oldcompt;
 }				t_fps;
 
 typedef struct	s_raycasting

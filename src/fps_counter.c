@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 01:32:27 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 03:12:18 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_fps_counter(t_var *var)
 {
 	char			*tmp;
-	int 			bol;
+	int				bol;
 
 	bol = 1;
 	var->fps.old = var->fps.time1;

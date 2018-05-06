@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 01:46:48 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/06 03:37:24 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_lst_obj	*ft_init_lst_obj(t_var *var)
 
 void		ft_init_struct(t_var *var)
 {
+	var->r.posx = 0;
+	var->r.posy = 0;
 	ft_pos_spawn(var);
 	var->r.del = 0;
 	var->r.del_wall = 1;
