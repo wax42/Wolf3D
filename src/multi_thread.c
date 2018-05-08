@@ -6,17 +6,16 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 19:42:15 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 01:13:52 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:32:05 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-
 #define PISTOLX 360
 #define PISTOLY 680
 
-void	mlx_put_image_to_image(t_var *var)
+void			mlx_put_image_to_image(t_var *var)
 {
 	int y;
 	int x;
@@ -49,24 +48,19 @@ unsigned int	get_thread(pthread_t id, pthread_t threads[THREADS])
 	return (i);
 }
 
-void	*ft_raycasting(void *data)
+void			*ft_raycasting(void *data)
 {
-	int x;
-	int	padding;
-	int	start;
-	t_var *var;
-	t_raycasting r;
+	int				x;
+	int				padding;
+	int				start;
+	t_var			*var;
+	t_raycasting	r;
 
 	var = (t_var*)data;
 	padding = WIN_X / THREADS;
-	start = padding * get_thread(pthread_self(), var->thread.core);
-	// ft_putnbr(padding);
-	ft_putendl("");
-	ft_putnbr(start);
-	// ft_putnbr(start);
+	r.curent_thread = get_thread(pthread_self(), var->thread.core);
+	start = padding * r.curent_thread;
 	x = start - 1;
-	// ft_putnbr(x);
-	// ft_putendl("");
 	while (++x < WIN_X && x < start + padding)
 	{
 		ft_init_raycasting(var, x, &r);
@@ -75,13 +69,6 @@ void	*ft_raycasting(void *data)
 		mur(var, x, &r);
 		ft_floor(var, x, &r);
 	}
-	// ft_put_map(var);
-	// ft_aff_obj(var);
-	// ft_menu(var);
-	// mlx_put_image_to_image(var);
-	// mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->mlx.img, 0, 0);
-	// mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->r.menu, 577, 735);
-	// ft_fps_counter(var);
 	return (NULL);
 }
 
@@ -98,7 +85,6 @@ void			thread_start(t_var *var)
 	i = -1;
 	while (++i < THREADS)
 		pthread_join(var->thread.core[i], NULL);
-	ft_putendl("fini");
 	ft_put_map(var);
 	ft_aff_obj(var);
 	ft_menu(var);
@@ -106,5 +92,4 @@ void			thread_start(t_var *var)
 	mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->mlx.img, 0, 0);
 	mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->menu, 577, 735);
 	ft_fps_counter(var);
-	ft_putendl("fini");
 }

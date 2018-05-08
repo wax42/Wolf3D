@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 00:54:58 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:28:24 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	ft_draw_obj(t_var *var, int x, int y)
 
 void	objet(t_var *var, int x, int y)
 {
-	t_raycasting r;
-	int d;
+	t_raycasting	r;
+	int				d;
 
 	ft_init_obj(var, x, y);
 	x = var->o.drawstartx;

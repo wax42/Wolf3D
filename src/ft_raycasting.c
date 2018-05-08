@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 00:26:17 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:15:36 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,11 @@ void	ft_init_raycasting(t_var *var, int x, t_raycasting *r)
 	var->camerax = (2 * x / (double)WIN_X) - 1;
 	r->raydirx = var->dirx + var->planex * var->camerax;
 	r->raydiry = var->diry + var->planey * var->camerax;
-	var->linex = r->raydirx;
-	var->liney = r->raydiry;
+	if (r->curent_thread == THREADS - 1)
+	{
+		var->linex = r->raydirx;
+		var->liney = r->raydiry;
+	}
 	r->mapx = (int)var->posx;
 	r->mapy = (int)var->posy;
 	r->deltadistx = fabs(1 / r->raydirx);

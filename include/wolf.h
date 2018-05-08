@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 02:03:23 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:09:54 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 
 
 # define FACT 4
-# define WIN_X  800
-# define WIN_Y  800
+# define WIN_X  1600
+# define WIN_Y  900
 # define ZOOM_MAP_X  WIN_X / FACT
 # define ZOOM_MAP_Y  WIN_Y / FACT
 # define SIZE_LINE 20
@@ -155,6 +155,7 @@ typedef struct	s_raycasting
 	double	distwall;
 	double	currentdist;
 	t_floor f;
+	int 	curent_thread;
 	char	*texture;
 	int		w_texture;
 	int		h_texture;
@@ -250,7 +251,6 @@ typedef struct	s_var
 	t_map 				map;
 	int					nbr_elem;
 	t_key 				key;
-	t_raycasting		r;
 	t_texture			t;
 	t_parsing			parsing;
 	t_thread			thread;
@@ -276,6 +276,7 @@ typedef struct	s_var
 	double				planex;
 	double				planey;
 	double				camerax;
+	int					jump;
 }				t_var;
 
 void			thread_start(t_var *dna);

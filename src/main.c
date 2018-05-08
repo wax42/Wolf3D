@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 22:16:16 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 01:17:26 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:26:51 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		main(int argc, char **av)
 		&var.mlx.size_line, &var.mlx.endian);
 	thread_start(&var);
 	mlx_hook(var.mlx.win, 2, 1, ft_key_press, &var);
-    mlx_hook(var.mlx.win, 3, 2, ft_key_release, &var);
+	mlx_hook(var.mlx.win, 3, 2, ft_key_release, &var);
 	mlx_hook(var.mlx.win, 2, (1L << 0), my_key_funct, &var);
 	mlx_hook(var.mlx.win, 17, 0, ft_exit_click, &var);
 	mlx_hook(var.mlx.win, 6, (1L << 6), mouse_hook, &var);

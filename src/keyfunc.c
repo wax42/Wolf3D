@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:48:55 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 00:39:45 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:11:45 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_look_right(int keycode, t_var *var)
 
 void	ft_key_commands(t_var *var, int keycode)
 {
+	if (keycode == 49)
+		var->jump--;
 	if (keycode == K_Y)
 		var->del = 1;
 	if (keycode == K_0)

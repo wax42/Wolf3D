@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 00:17:04 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:09:35 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void		ft_init_struct(t_var *var)
 	var->fps.compt = 0;
 	var->fps.oldcompt = 0;
 	var->movespeed = 0.5;
+	var->jump = 0;
 	var->rotate = 0.2;
 	var->olddirx = 0;
 	var->speed = 8;

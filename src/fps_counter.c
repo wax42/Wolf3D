@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 00:37:47 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:25:02 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,10 @@ void	ft_put_map(t_var *var)
 {
 	int		x;
 	int		y;
-	int		max;
 	t_coord p;
 	t_coord p2;
 
-	(var->parsing.max.y < var->parsing.max.x) ? (max = var->parsing.max.x) : (max = var->parsing.max.y);
-	var->map.size_x = ZOOM_MAP_X  / var->parsing.max.x;
+	var->map.size_x = ZOOM_MAP_X / var->parsing.max.x;
 	var->map.size_y = ZOOM_MAP_Y / var->parsing.max.y;
 	y = -1;
 	while (++y < var->parsing.max.y)
