@@ -6,7 +6,7 @@
 #    By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/17 16:14:51 by vguerand          #+#    #+#              #
-#    Updated: 2018/05/05 21:59:21 by vguerand         ###   ########.fr        #
+#    Updated: 2018/05/07 20:18:12 by vguerand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = wolf3d
 
 SRC_NAME = init_struct.c ft_raycasting.c floor.c mlx_pixel_put_to_img.c \
 			mur.c fps_counter.c parsing.c keyfunc.c main.c obj.c ft_exit.c \
-			ft_aff_obj.c ft_ligne.c mouse_hook.c menu.c raycasting_commands.c\
-			init_texture.c keyfunc_move.c init_obj.c shooting.c pos_spawn.c
+			ft_aff_obj.c ft_ligne.c mouse_hook.c menu.c multi_thread.c\
+			init_texture.c keyfunc_move.c init_obj.c shooting.c pos_spawn.c\
+
 
 SRC_PATH = src/
 
@@ -23,7 +24,7 @@ OBJ = $(patsubst %.c,%.o, $(addprefix $(SRC_PATH), $(SRC_NAME)))
 
 CC = gcc
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 LIB_FLAG = libft/libft.a minilibx_macos/libmlx.a
 

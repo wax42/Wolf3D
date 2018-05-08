@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 03:35:21 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 21:32:10 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 01:15:50 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	ft_init_obj(t_var *var, int x, int y)
 
 	var->o.coord.x = x;
 	var->o.coord.y = y;
-	spritex = (double)(x) + 0.4 - var->r.posx;
-	spritey = (double)(y) + 0.4 - var->r.posy;
-	indev = 1.0 / (var->r.planex * var->r.diry - var->r.dirx * var->r.planey);
+	spritex = (double)(x) + 0.4 - var->posx;
+	spritey = (double)(y) + 0.4 - var->posy;
+	indev = 1.0 / (var->planex * var->diry - var->dirx * var->planey);
 	var->o.transformx = indev * \
-	(var->r.diry * spritex - var->r.dirx * spritey);
+	(var->diry * spritex - var->dirx * spritey);
 	var->o.transformy = indev * \
-	(-var->r.planey * spritex + var->r.planex * spritey);
+	(-var->planey * spritex + var->planex * spritey);
 	var->o.spritescreenx = (int)((WIN_X / 2) * \
 	(1 + var->o.transformx / var->o.transformy));
 	var->vmovescreen = (int)(VMOVE / var->o.transformy);

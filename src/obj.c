@@ -6,33 +6,33 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 15:21:08 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:04:48 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 00:54:58 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-int		ft_lancer_d_obj(t_var *var)
+int		ft_lancer_d_obj(t_var *var, t_raycasting *r)
 {
-	while (var->r.hit == 0)
+	while (r->hit == 0)
 	{
-		if (var->r.sidedistx < var->r.sidedisty)
+		if (r->sidedistx < r->sidedisty)
 		{
-			var->r.sidedistx += var->r.deltadistx;
-			var->r.mapx += var->r.stepx;
+			r->sidedistx += r->deltadistx;
+			r->mapx += r->stepx;
 		}
 		else
 		{
-			var->r.sidedisty += var->r.deltadisty;
-			var->r.mapy += var->r.stepy;
+			r->sidedisty += r->deltadisty;
+			r->mapy += r->stepy;
 		}
-		if (var->r.mapx < var->parsing.max.x && var->r.mapx >= 0 && var->r.mapy\
-			< var->parsing.max.y && var->r.mapy >= 0)
+		if (r->mapx < var->parsing.max.x && r->mapx >= 0 && r->mapy\
+			< var->parsing.max.y && r->mapy >= 0)
 		{
-			if (var->r.mapx == var->o.coord.x && var->r.mapy == var->o.coord.y)
+			if (r->mapx == var->o.coord.x && r->mapy == var->o.coord.y)
 				return (1);
-			else if (var->parsing.tab[var->r.mapy][var->r.mapx] > 1 &&\
-				var->parsing.tab[var->r.mapy][var->r.mapx] != 9)
+			else if (var->parsing.tab[r->mapy][r->mapx] > 1 &&\
+				var->parsing.tab[r->mapy][r->mapx] != 9)
 				return (0);
 		}
 		else
@@ -41,18 +41,18 @@ int		ft_lancer_d_obj(t_var *var)
 	return (0);
 }
 
-int		obj_check(t_var *var, int x)
+int		obj_check(t_var *var, int x, t_raycasting *r)
 {
-	var->r.camerax = (2 * x / (double)WIN_X) - 1;
-	var->r.raydirx = var->r.dirx + var->r.planex * var->r.camerax;
-	var->r.raydiry = var->r.diry + var->r.planey * var->r.camerax;
-	var->r.mapx = (int)var->r.posx;
-	var->r.mapy = (int)var->r.posy;
-	var->r.deltadistx = fabs(1 / var->r.raydirx);
-	var->r.deltadisty = fabs(1 / var->r.raydiry);
-	var->r.hit = 0;
-	ft_condtion_ray(var);
-	return (ft_lancer_d_obj(var));
+	var->camerax = (2 * x / (double)WIN_X) - 1;
+	r->raydirx = var->dirx + var->planex * var->camerax;
+	r->raydiry = var->diry + var->planey * var->camerax;
+	r->mapx = (int)var->posx;
+	r->mapy = (int)var->posy;
+	r->deltadistx = fabs(1 / r->raydirx);
+	r->deltadisty = fabs(1 / r->raydiry);
+	r->hit = 0;
+	ft_condtion_ray(var, r);
+	return (ft_lancer_d_obj(var, r));
 }
 
 void	ft_draw_obj(t_var *var, int x, int y)
@@ -74,6 +74,7 @@ void	ft_draw_obj(t_var *var, int x, int y)
 
 void	objet(t_var *var, int x, int y)
 {
+	t_raycasting r;
 	int d;
 
 	ft_init_obj(var, x, y);
@@ -83,7 +84,7 @@ void	objet(t_var *var, int x, int y)
 		var->t.texture_x = (int)(256 * (x - (-var->o.spritewidth / 2 + \
 	var->o.spritescreenx)) * var->t.w_texture_obj / var->o.spritewidth) / 256;
 		y = var->o.drawstarty;
-		if (obj_check(var, x))
+		if (obj_check(var, x, &r))
 		{
 			if (var->o.transformy > 0 && x > 0 && x < WIN_X)
 				while (++y < var->o.drawendy)

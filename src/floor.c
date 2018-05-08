@@ -6,55 +6,55 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:11 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:11:02 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 00:33:08 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf.h"
 
-void	calculate_floor(t_var *var)
+void	calculate_floor(t_var *var, t_raycasting *r)
 {
-	var->f.weight = (var->r.currentdist - var->f.distplayer) / \
-									(var->r.distwall - var->f.distplayer);
-	var->f.current_floor_sky_x = var->f.weight * var->f.floor_sky_wallx +\
-										(1.0 - var->f.weight) * var->r.posx;
-	var->f.current_floor_sky_y = var->f.weight * var->f.floor_sky_wally + \
-										(1.0 - var->f.weight) * var->r.posy;
-	var->f.floor_sky_tex_x = (int)(var->f.current_floor_sky_x * \
+	r->f.weight = (r->currentdist - r->f.distplayer) / \
+									(r->distwall - r->f.distplayer);
+	r->f.current_x = r->f.weight * r->f.wallx +\
+										(1.0 - r->f.weight) * var->posx;
+	r->f.current_y = r->f.weight * r->f.wally + \
+										(1.0 - r->f.weight) * var->posy;
+	r->f.tex_x = (int)(r->f.current_x * \
 							var->t.w_texture_floor) % var->t.w_texture_floor;
-	var->f.floor_sky_tex_y = (int)(var->f.current_floor_sky_y * \
+	r->f.tex_y = (int)(r->f.current_y * \
 							var->t.h_texture_floor) % var->t.h_texture_floor;
 }
 
-void	floor_find_side(t_var *var)
+void	floor_find_side(t_raycasting *r)
 {
-	if ((var->r.side == 0 || var->r.side == 1) && var->r.raydirx > 0)
+	if ((r->side == 0 || r->side == 1) && r->raydirx > 0)
 	{
-		var->f.floor_sky_wallx = var->r.mapx;
-		var->f.floor_sky_wally = var->r.mapy + var->r.wallx;
+		r->f.wallx = r->mapx;
+		r->f.wally = r->mapy + r->wallx;
 	}
-	else if ((var->r.side == 0 || var->r.side == 1) && var->r.raydirx < 0)
+	else if ((r->side == 0 || r->side == 1) && r->raydirx < 0)
 	{
-		var->f.floor_sky_wallx = var->r.mapx + 1.0;
-		var->f.floor_sky_wally = var->r.mapy + var->r.wallx;
+		r->f.wallx = r->mapx + 1.0;
+		r->f.wally = r->mapy + r->wallx;
 	}
-	else if ((var->r.side == 2 || var->r.side == 3) && var->r.raydiry > 0)
+	else if ((r->side == 2 || r->side == 3) && r->raydiry > 0)
 	{
-		var->f.floor_sky_wallx = var->r.mapx + var->r.wallx;
-		var->f.floor_sky_wally = var->r.mapy;
+		r->f.wallx = r->mapx + r->wallx;
+		r->f.wally = r->mapy;
 	}
 	else
 	{
-		var->f.floor_sky_wallx = var->r.mapx + var->r.wallx;
-		var->f.floor_sky_wally = var->r.mapy + 1.0;
+		r->f.wallx = r->mapx + r->wallx;
+		r->f.wally = r->mapy + 1.0;
 	}
-	var->r.distwall = var->r.perpwalldist;
-	var->f.distplayer = 0.0;
-	if (var->r.drawend < 0)
-		var->r.drawend = WIN_Y;
+	r->distwall = r->perpwalldist;
+	r->f.distplayer = 0.0;
+	if (r->drawend < 0)
+		r->drawend = WIN_Y;
 }
 
-void	ft_floor(t_var *var, int x)
+void	ft_floor(t_var *var, int x, t_raycasting *r)
 {
 	int y;
 	int i;
@@ -62,14 +62,14 @@ void	ft_floor(t_var *var, int x)
 	int color_b;
 	int color_r;
 
-	floor_find_side(var);
-	y = var->r.drawend - 1;
+	floor_find_side(r);
+	y = r->drawend - 1;
 	while (y++ < WIN_Y)
 	{
-		var->r.currentdist = WIN_Y / (2.0 * y - WIN_Y);
-		calculate_floor(var);
-		i = (var->t.w_texture_floor * var->f.floor_sky_tex_y + \
-													var->f.floor_sky_tex_x) * 4;
+		r->currentdist = WIN_Y / (2.0 * y - WIN_Y);
+		calculate_floor(var, r);
+		i = (var->t.w_texture_floor * r->f.tex_y + \
+													r->f.tex_x) * 4;
 		color_r = var->t.texture_floor[i + 2];
 		color_g = var->t.texture_floor[i + 1];
 		color_b = var->t.texture_floor[i];

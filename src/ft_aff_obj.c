@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 13:10:41 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 19:13:38 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 00:55:18 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_tab	*ft_dist_obj(t_lst_obj *lst, int len, t_var *var)
 	while (++j < len)
 	{
 		tab[j].obj = lst;
-		spritex = ((double)(lst->coord.x) + 0.4 - var->r.posx) * var->r.dirx;
-		spritey = ((double)(lst->coord.y) + 0.4 - var->r.posy) * var->r.diry;
+		spritex = ((double)(lst->coord.x) + 0.4 - var->posx) * var->dirx;
+		spritey = ((double)(lst->coord.y) + 0.4 - var->posy) * var->diry;
 		tab[j].dist = sqrt((spritex * spritex) + (spritey * spritey));
 		lst = lst->next;
 	}

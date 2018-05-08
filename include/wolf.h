@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:47:20 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 02:03:23 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,30 @@
 # include "../libft/libft.h"
 # include "mlx.h"
 # include <math.h>
+# include <pthread.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <sys/time.h>
 
-# define ZOOM_MAP  6
+# define COLOR_LINE 0xFFFF00
+# define COLOR_FLOOR 0xAAB2AC
+# define COLOR_WALL 0x000000
+# define COLOR_OBJ 0xFF00FF
+# define COLOR_PERSO 0xFF0000
+
+
+# define FACT 4
 # define WIN_X  800
 # define WIN_Y  800
+# define ZOOM_MAP_X  WIN_X / FACT
+# define ZOOM_MAP_Y  WIN_Y / FACT
+# define SIZE_LINE 20
+
 # define UDIV 1.1
 # define VDIV 1.1
 # define VMOVE 0.0
+
 # define K_ENTER	36
 # define K_R	15
 # define K_Y	16
@@ -50,8 +63,12 @@
 # define K_ARROW_DOWM 125
 # define K_ARROW_LEFT 123
 # define K_ARROW_RIGHT 124
+
 # define MAP_MAX 124
-# define MAP_MIN 22
+# define MAP_MIN 10
+
+# define THREADS 2
+# define bool char
 
 typedef struct	s_coord
 {
@@ -72,6 +89,17 @@ typedef struct	s_mlx
 	void	*win;
 }				t_mlx;
 
+
+typedef struct	s_key
+{
+	bool		up;
+	bool		down;
+	bool		left;
+	bool		right;
+	bool 		look_left;
+	bool 		look_right;
+}				t_key;
+
 typedef struct	s_parsing
 {
 	t_coord		max;
@@ -80,12 +108,12 @@ typedef struct	s_parsing
 
 typedef struct	s_floor
 {
-	double	floor_sky_wallx;
-	double	floor_sky_wally;
-	double	current_floor_sky_x;
-	double	current_floor_sky_y;
-	int		floor_sky_tex_x;
-	int		floor_sky_tex_y;
+	double	wallx;
+	double	wally;
+	double	current_x;
+	double	current_y;
+	int		tex_x;
+	int		tex_y;
 	double	weight;
 	double	distplayer;
 
@@ -99,15 +127,14 @@ typedef struct	s_fps
 	int				oldcompt;
 }				t_fps;
 
+typedef struct	s_map
+{
+	int				size_x;
+	int				size_y;
+}				t_map;
+
 typedef struct	s_raycasting
 {
-	double	posx;
-	double	posy;
-	double	dirx;
-	double	diry;
-	double	planex;
-	double	planey;
-	double	camerax;
 	double	raydirx;
 	double	raydiry;
 	int		mapx;
@@ -124,25 +151,14 @@ typedef struct	s_raycasting
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
-	double	movespeed;
-	double	rotate;
-	double	speed;
-	double	olddirx;
-	double	oldplanex;
 	double	wallx;
 	double	distwall;
 	double	currentdist;
-	int		del_wall;
-	int		del;
-	char	*pistol;
-	char	*menu;
-	char	*start_menu;
-	int		mouse;
-	int		menu_select;
-	int		denom;
-	int		shoot;
-	double	linex;
-	double	liney;
+	t_floor f;
+	char	*texture;
+	int		w_texture;
+	int		h_texture;
+	int		texture_x;
 }				t_raycasting;
 
 typedef struct	s_obj
@@ -170,6 +186,14 @@ typedef struct	s_ligne
 	int	x;
 	int	y;
 }				t_ligne;
+
+
+
+typedef struct	s_thread
+{
+	bool 		get_core;
+	pthread_t	core[THREADS];
+}				t_thread;
 
 typedef struct	s_lst_obj
 {
@@ -214,39 +238,59 @@ typedef struct	s_texture
 	char	*tex_menu;
 	int		w_tex_menu;
 	int		h_tex_menu;
-	char	*texture;
-	int		w_texture;
-	int		h_texture;
 }				t_texture;
 
 typedef struct	s_var
 {
 	int					val;
 	t_fps				fps;
-	t_floor				f;
 	t_mlx				mlx;
 	t_obj				o;
 	t_lst_obj			*lst;
+	t_map 				map;
 	int					nbr_elem;
+	t_key 				key;
 	t_raycasting		r;
 	t_texture			t;
 	t_parsing			parsing;
+	t_thread			thread;
 	int					vmovescreen;
+	int 				del;
+	char				*pistol;
+	char				*menu;
+	char				*start_menu;
+	int					mouse;
+	int					menu_select;
+	int					shoot;
+	double				linex;
+	double				liney;
+	double				posx;
+	double				posy;
+	double				movespeed;
+	double				rotate;
+	double				speed;
+	double				olddirx;
+	double				oldplanex;
+	double				dirx;
+	double				diry;
+	double				planex;
+	double				planey;
+	double				camerax;
 }				t_var;
 
+void			thread_start(t_var *dna);
 void			ft_pos_spawn(t_var *var);
 void			ft_shooting(t_var *var);
-void			ft_width_wall(t_var *var);
-void			ft_lancer_de_rayon(t_var *var);
-void			ft_init_raycasting(t_var *var, int x);
-void			ft_raycasting(t_var *var);
+void			ft_width_wall(t_var *var, t_raycasting *r);
+void			ft_lancer_de_rayon(t_var *var, t_raycasting *r);
+void			ft_init_raycasting(t_var *var, int x, t_raycasting *r);
 void			ft_ligne(t_mlx mlx, t_coord p, t_coord p2, int color);
 int				ft_exit_click(void);
-void			ft_condtion_ray(t_var *var);
+void			ft_condtion_ray(t_var *var, t_raycasting *r);
 void			objet(t_var *var, int x, int y);
 void			ft_put_map(t_var *var);
-void			ft_floor(t_var *var, int x);
-void			mur(t_var *var, int x);
+void			ft_floor(t_var *var, int x, t_raycasting *r);
+void			mur(t_var *var, int x, t_raycasting *r);
 int				**parsing(t_parsing *p, char *str);
 void			mlx_pixel_put_to_image(t_mlx mlx, int x, int y, int color);
 void			ft_init_struct(t_var *var);

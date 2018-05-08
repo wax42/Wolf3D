@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 14:43:04 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/04 22:18:43 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 02:03:51 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,69 +17,70 @@ int		rgb_to_hexa(int r, int g, int b)
 	return ((r & 0xFF) << 16) + ((g & 0xFF) << 8) + (b & 0xFF);
 }
 
-void	ft_texture_orientation(t_var *var)
+void	ft_texture_orientation(t_var *var, t_raycasting *r)
 {
-	if (var->r.side == 0)
+	if (r->side == 0)
 	{
-		var->t.texture = var->t.tex_mur_nord;
-		var->t.w_texture = var->t.w_tex_mur_nord;
-		var->t.h_texture = var->t.h_tex_mur_nord;
+		r->texture = var->t.tex_mur_nord;
+		r->w_texture = var->t.w_tex_mur_nord;
+		r->h_texture = var->t.h_tex_mur_nord;
 	}
-	else if (var->r.side == 1)
+	else if (r->side == 1)
 	{
-		var->t.texture = var->t.tex_mur_sud;
-		var->t.w_texture = var->t.w_tex_mur_sud;
-		var->t.h_texture = var->t.h_tex_mur_sud;
+		r->texture = var->t.tex_mur_sud;
+		r->w_texture = var->t.w_tex_mur_sud;
+		r->h_texture = var->t.h_tex_mur_sud;
 	}
-	else if (var->r.side == 2)
+	else if (r->side == 2)
 	{
-		var->t.texture = var->t.tex_mur_west;
-		var->t.w_texture = var->t.w_tex_mur_west;
-		var->t.h_texture = var->t.h_tex_mur_west;
+		r->texture = var->t.tex_mur_west;
+		r->w_texture = var->t.w_tex_mur_west;
+		r->h_texture = var->t.h_tex_mur_west;
 	}
 	else
 	{
-		var->t.texture = var->t.tex_mur_est;
-		var->t.w_texture = var->t.w_tex_mur_est;
-		var->t.h_texture = var->t.h_tex_mur_est;
+		r->texture = var->t.tex_mur_est;
+		r->w_texture = var->t.w_tex_mur_est;
+		r->h_texture = var->t.h_tex_mur_est;
 	}
 }
 
-void	ft_value_wall(t_var *var)
+void	ft_value_wall(t_var *var, t_raycasting *r)
 {
-	ft_texture_orientation(var);
-	if (var->r.side == 0 || var->r.side == 1)
-		var->r.wallx = var->r.posy + var->r.perpwalldist * var->r.raydiry;
+	if (r->side == 0 || r->side == 1)
+		r->wallx = var->posy + r->perpwalldist * r->raydiry;
 	else
-		var->r.wallx = var->r.posx + var->r.perpwalldist * var->r.raydirx;
-	var->r.wallx -= floor(var->r.wallx);
-	var->t.texture_x = (int)(var->r.wallx * (double)var->t.w_texture);
-	if (var->r.side == 0 && var->r.raydirx > 0)
-		var->t.texture_x -= var->t.w_texture - 1;
-	if (var->r.side == 1 && var->r.raydiry < 0)
-		var->t.texture_x -= var->t.w_texture - 1;
+		r->wallx = var->posx + r->perpwalldist * r->raydirx;
+	r->wallx -= floor(r->wallx);
+	r->texture_x = (int)(r->wallx * (double)r->w_texture);
+	if (r->side == 0 && r->raydirx > 0)
+		r->texture_x -= r->w_texture - 1;
+	if (r->side == 1 && r->raydiry < 0)
+		r->texture_x -= r->w_texture - 1;
 }
 
-void	mur(t_var *var, int x)
+void	mur(t_var *var, int x, t_raycasting *r)
 {
 	int y;
 	int color_g;
 	int color_b;
 	int color_r;
+	int texture_y;
 	int i;
 
-	ft_value_wall(var);
-	y = var->r.drawstart - 1;
-	while (++y < var->r.drawend + 1)
+	ft_texture_orientation(var, r);
+	ft_value_wall(var, r);
+	y = r->drawstart - 1;
+	while (++y < r->drawend + 1)
 	{
-		i = y * 256 - WIN_Y * 128 + (var->r.lineheight) * 128;
-		var->t.texture_y = (i * var->t.h_texture) / (var->r.lineheight) / 256;
-		if (var->t.texture_y >= 0)
+		i = y * 256 - WIN_Y * 128 + (r->lineheight) * 128;
+		texture_y = (i * r->h_texture) / (r->lineheight) / 256;
+		if (texture_y >= 0)
 		{
-			i = (var->t.texture_y * var->t.w_texture + var->t.texture_x) * 4;
-			color_r = var->t.texture[i + 2];
-			color_g = var->t.texture[i + 1];
-			color_b = var->t.texture[i];
+			i = (texture_y * r->w_texture + r->texture_x) * 4;
+			color_r = r->texture[i + 2];
+			color_g = r->texture[i + 1];
+			color_b = r->texture[i];
 			i = (y * WIN_Y + x) * 4;
 			if (i > 0 && i < (WIN_Y * WIN_Y * 4))
 				mlx_pixel_put_to_image(var->mlx, x, y, \

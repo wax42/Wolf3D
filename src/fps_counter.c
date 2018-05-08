@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 15:17:22 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:12:18 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 00:37:47 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void	ft_fps_counter(t_var *var)
 void	ft_mlx_put_pixel_image_square(t_var *var, int x, int y, \
 																	int color)
 {
-	int	i;
-	int	j;
+	int	x1;
+	int	y1;
 
-	i = -1;
-	while (++i <= var->r.denom)
+	x1 = -1;
+	while (++x1 <= var->map.size_x)
 	{
-		j = -1;
-		while (++j <= var->r.denom)
-			mlx_pixel_put_to_image(var->mlx, x + i, y + j, color);
+		y1 = -1;
+		while (++y1 <= var->map.size_y)
+			mlx_pixel_put_to_image(var->mlx, x + x1, y + y1, color);
 	}
 }
 
@@ -57,26 +57,29 @@ void	ft_draw_map(t_var *var, int x, int y)
 {
 	if (var->parsing.tab[y][x] == 9)
 		ft_mlx_put_pixel_image_square(\
-			var, x * var->r.denom, y * var->r.denom, 0xFF00FF);
+			var, x * var->map.size_x, y * var->map.size_y, COLOR_OBJ);
 	if (var->parsing.tab[y][x] > 1 && var->parsing.tab[y][x] != 9)
 		ft_mlx_put_pixel_image_square(\
-			var, x * var->r.denom, y * var->r.denom, 0x000000);
+			var, x * var->map.size_x, y * var->map.size_y, COLOR_WALL);
 	if (var->parsing.tab[y][x] == 1)
 		ft_mlx_put_pixel_image_square(\
-			var, x * var->r.denom, y * var->r.denom, 0xAAB2AC);
-	if (((int)var->r.posx == x && (int)var->r.posy == y))
+			var, x * var->map.size_x, y * var->map.size_y, COLOR_FLOOR);
+	if (((int)var->posx == x && (int)var->posy == y))
 		ft_mlx_put_pixel_image_square(\
-			var, x * var->r.denom, y * var->r.denom, 0xFF0000);
+			var, x * var->map.size_x, y * var->map.size_y, COLOR_PERSO);
 }
 
 void	ft_put_map(t_var *var)
 {
 	int		x;
 	int		y;
+	int		max;
 	t_coord p;
 	t_coord p2;
 
-	var->r.denom = ZOOM_MAP;
+	(var->parsing.max.y < var->parsing.max.x) ? (max = var->parsing.max.x) : (max = var->parsing.max.y);
+	var->map.size_x = ZOOM_MAP_X  / var->parsing.max.x;
+	var->map.size_y = ZOOM_MAP_Y / var->parsing.max.y;
 	y = -1;
 	while (++y < var->parsing.max.y)
 	{
@@ -84,9 +87,9 @@ void	ft_put_map(t_var *var)
 		while (++x < var->parsing.max.x)
 			ft_draw_map(var, x, y);
 	}
-	p.x = floor(var->r.posx) * var->r.denom + 3;
-	p.y = floor(var->r.posy) * var->r.denom + 3;
-	p2.x = p.x + (var->r.diry - var->r.liney) * 20;
-	p2.y = p.y - (var->r.dirx - var->r.linex) * 20;
-	ft_ligne(var->mlx, p, p2, 0xFFFF00);
+	p.x = floor(var->posx) * var->map.size_x + var->map.size_x / 2;
+	p.y = floor(var->posy) * var->map.size_y + var->map.size_y / 2;
+	p2.x = p.x + (var->diry - var->liney) * SIZE_LINE;
+	p2.y = p.y - (var->dirx - var->linex) * SIZE_LINE;
+	ft_ligne(var->mlx, p, p2, COLOR_LINE);
 }

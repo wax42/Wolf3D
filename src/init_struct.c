@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:37:24 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 00:17:04 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,24 @@ t_lst_obj	*ft_init_lst_obj(t_var *var)
 
 void		ft_init_struct(t_var *var)
 {
-	var->r.posx = 0;
-	var->r.posy = 0;
+	var->key.up = 0;
+	var->key.down = 0;
+	var->key.left = 0;
+	var->key.right = 0;
+	var->posx = 0;
+	var->posy = 0;
 	ft_pos_spawn(var);
-	var->r.del = 0;
-	var->r.del_wall = 1;
-	var->r.dirx = -1.0;
-	var->r.diry = 0.0;
-	var->r.planex = 0;
-	var->r.planey = 0.66;
+	var->del = 0;
+	var->dirx = -1.0;
+	var->diry = 0.0;
+	var->planex = 0;
+	var->planey = 0.66;
 	var->fps.compt = 0;
 	var->fps.oldcompt = 0;
-	var->r.movespeed = 0.5;
-	var->r.rotate = 0.2;
-	var->r.olddirx = 0;
-	var->r.speed = 8;
+	var->movespeed = 0.5;
+	var->rotate = 0.2;
+	var->olddirx = 0;
+	var->speed = 8;
 	var->lst = ft_init_lst_obj(var);
 	ft_init_texture(var);
 }

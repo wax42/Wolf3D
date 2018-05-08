@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:10:57 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:45:55 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 01:16:40 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_find_spawn(t_var *var)
 		{
 			if (var->parsing.tab[y][x] == 1)
 			{
-				var->r.posx = x;
-				var->r.posy = y;
+				var->posx = x;
+				var->posy = y;
 				return ;
 			}
 		}
@@ -50,12 +50,12 @@ void	ft_pos_spawn(t_var *var)
 			{
 				bol++;
 				var->parsing.tab[y][x] = 1;
-				var->r.posx = x;
-				var->r.posy = y;
+				var->posx = x;
+				var->posy = y;
 			}
 		}
 	}
-	if (bol != 1 || (var->r.posx < 2 || var->r.posx < var->parsing.max.x) || \
-	(var->r.posy < 2 || var->r.posx < var->parsing.max.x))
+	if (bol != 1 || (var->posx < 2 || var->posx < var->parsing.max.x) || \
+	(var->posy < 2 || var->posx < var->parsing.max.x))
 		ft_find_spawn(var);
 }
