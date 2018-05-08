@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 18:09:54 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 23:36:16 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ typedef struct	s_mlx
 	void	*win;
 }				t_mlx;
 
-
 typedef struct	s_key
 {
 	bool		up;
@@ -131,7 +130,19 @@ typedef struct	s_map
 {
 	int				size_x;
 	int				size_y;
+	double			linex;
+	double			liney;
 }				t_map;
+
+typedef struct	s_menu
+{
+	char			*pistol;
+	char			*menu;
+	char			*start_menu;
+	int				mouse;
+	int				menu_select;
+	int				shoot;
+}				t_menu;
 
 typedef struct	s_raycasting
 {
@@ -187,8 +198,6 @@ typedef struct	s_ligne
 	int	x;
 	int	y;
 }				t_ligne;
-
-
 
 typedef struct	s_thread
 {
@@ -262,8 +271,6 @@ typedef struct	s_var
 	int					mouse;
 	int					menu_select;
 	int					shoot;
-	double				linex;
-	double				liney;
 	double				posx;
 	double				posy;
 	double				movespeed;

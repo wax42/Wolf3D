@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:44:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/06 03:35:42 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/08 19:19:18 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		**parsing(t_parsing *p, char *str)
 	ft_secur_open(str);
 	if ((fd = open(str, O_RDONLY)) < 0)
 		ft_exit(0);
-	if (get_next_line(fd, &line) == -1)
+	if (get_next_line(fd, &line) == -1 || ft_strlen(line) > 10)
 		ft_exit(0);
 	x_max = ft_atoi(line);
 	y_max = ft_atoi(line + ft_nbrlen(x_max) + 1);
