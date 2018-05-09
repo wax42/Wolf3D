@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:06:44 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 23:30:56 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 04:45:13 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ void	ft_lancer_de_rayon(t_var *var, t_raycasting *r)
 			if (var->parsing.tab[r->mapy][r->mapx] > 1 && \
 								var->parsing.tab[r->mapy][r->mapx] != 9)
 				r->hit = 1;
-			if (var->parsing.tab[r->mapy][r->mapx] == 3 && \
-																var->del == 1)
-				var->parsing.tab[r->mapy][r->mapx] = 1;
 		}
 		else
 			r->hit = 1;

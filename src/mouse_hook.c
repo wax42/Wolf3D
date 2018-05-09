@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 14:59:47 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 01:12:54 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 04:51:34 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_rotate_right(t_var *var)
 int		mouse_hook(int x, int y, t_var *var)
 {
 	y = 0;
-	if (var->mouse == 1)
+	if (var->key.mouse == 1)
 	{
 		if (x > var->olddirx)
 		{

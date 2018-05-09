@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:36:10 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 18:09:35 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 04:59:17 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_init_struct(t_var *var)
 	var->posx = 0;
 	var->posy = 0;
 	ft_pos_spawn(var);
-	var->del = 0;
+	var->key.mouse = 0;
 	var->dirx = -1.0;
 	var->diry = 0.0;
 	var->planex = 0;

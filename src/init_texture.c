@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 02:46:41 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 01:14:34 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 04:49:38 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_init_texture_sky_floor_obj(t_var *var, void *pt_texture)
 		ft_exit(3);
 	var->t.texture_obj = mlx_get_data_addr(pt_texture, &(var->mlx.bpp),
 		&(var->mlx.size_line), &(var->mlx.endian));
-	if (!(var->start_menu = mlx_xpm_file_to_image(var->mlx.mlx, \
+	if (!(var->m.imagestart = mlx_xpm_file_to_image(var->mlx.mlx, \
 													"./t/start_menu.xpm",
 		&var->t.w_tex_menu, &var->t.h_tex_menu)))
 		ft_exit(3);

@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 19:42:15 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 18:32:05 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 05:26:44 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void			thread_start(t_var *var)
 	ft_menu(var);
 	mlx_put_image_to_image(var);
 	mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->mlx.img, 0, 0);
+	ft_putstr("pute");
 	mlx_put_image_to_window(var->mlx.mlx, var->mlx.win, var->menu, 577, 735);
+	ft_putstr("pute");
 	ft_fps_counter(var);
 }

@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:48:55 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 18:11:45 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 04:51:24 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_key_commands(t_var *var, int keycode)
 	if (keycode == 49)
 		var->jump--;
 	if (keycode == K_Y)
-		var->del = 1;
+		var->jump = 0;
 	if (keycode == K_0)
 		var->menu_select = 0;
 	if (keycode == K_1)
@@ -61,9 +61,9 @@ void	ft_key_commands(t_var *var, int keycode)
 	if (keycode == K_3)
 		var->menu_select = 3;
 	if (keycode == K_M)
-		var->mouse = 1;
+		var->key.mouse = 1;
 	if (keycode == K_N)
-		var->mouse = 0;
+		var->key.mouse = 0;
 	if (keycode == K_R && var->menu_select == 0)
 		var->shoot += 1;
 }

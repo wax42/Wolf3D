@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/08 23:36:16 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/09 05:31:12 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct	s_key
 	bool		right;
 	bool 		look_left;
 	bool 		look_right;
+	bool		mouse;
 }				t_key;
 
 typedef struct	s_parsing
@@ -136,10 +137,9 @@ typedef struct	s_map
 
 typedef struct	s_menu
 {
+	char			*imagestart;
 	char			*pistol;
 	char			*menu;
-	char			*start_menu;
-	int				mouse;
 	int				menu_select;
 	int				shoot;
 }				t_menu;
@@ -263,15 +263,13 @@ typedef struct	s_var
 	t_texture			t;
 	t_parsing			parsing;
 	t_thread			thread;
+	t_menu				m;
 	int					vmovescreen;
-	int 				del;
-	char				*pistol;
-	char				*menu;
-	char				*start_menu;
-	int					mouse;
+	void				*menu;
 	int					menu_select;
 	int					shoot;
 	double				posx;
+	int					eojfofjerkfowerjfrehfgenrguk;
 	double				posy;
 	double				movespeed;
 	double				rotate;
