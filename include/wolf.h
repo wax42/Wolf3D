@@ -6,7 +6,7 @@
 /*   By: vguerand <vguerand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:37:17 by vguerand          #+#    #+#             */
-/*   Updated: 2018/05/24 22:14:57 by vguerand         ###   ########.fr       */
+/*   Updated: 2018/05/27 01:47:25 by vguerand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define COLOR_PERSO 0xFF0000
 
 # define FACT 4
-# define WIN_X  1600
+# define WIN_X  800
 # define WIN_Y  800
 # define ZOOM_MAP_X  WIN_X / FACT
 # define ZOOM_MAP_Y  WIN_Y / FACT
