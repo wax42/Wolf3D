@@ -19,6 +19,8 @@ SRC_NAME = init_struct.c ft_raycasting.c floor.c mlx_pixel_put_to_img.c \
 
 SRC_PATH = src/
 
+lib = -lmlx -Lminilibx_macos
+
 OBJ = $(patsubst %.c,%.o, $(addprefix $(SRC_PATH), $(SRC_NAME)))
 
 CC = gcc
@@ -37,7 +39,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 		@make -C libft/
-		@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -lm -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
+		@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -lm -L libft/ -lft -lmlx -Lminilibx_macos -framework OpenGL -framework AppKit
 		@echo "\033[0;32m[OK] \033[0m\033[0;33m Compiling file:\033[0m " $@
 clean:
 	@make -C libft clean

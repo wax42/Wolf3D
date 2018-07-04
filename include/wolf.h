@@ -14,7 +14,7 @@
 # define __WOLF_H
 
 # include "../libft/libft.h"
-# include "mlx.h"
+# include "../minilibx_macos/mlx.h"
 # include <math.h>
 # include <pthread.h>
 # include <sys/types.h>
@@ -29,8 +29,8 @@
 # define COLOR_PERSO 0xFF0000
 
 # define FACT 4
-# define WIN_X  800
-# define WIN_Y  800
+# define WIN_X  1660
+# define WIN_Y  1000
 # define ZOOM_MAP_X  WIN_X / FACT
 # define ZOOM_MAP_Y  WIN_Y / FACT
 # define SIZE_LINE 20
